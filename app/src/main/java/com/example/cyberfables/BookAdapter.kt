@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cyberfables.entities.Fable
 
-// TODO: change dataset to Fable type
-class BookAdapter(private val dataset: Array<String>) :
+class BookAdapter(private val dataset: ArrayList<Fable>) :
     RecyclerView.Adapter<BookAdapter.MyViewHolder>() {
 
     class MyViewHolder(val item: View) : RecyclerView.ViewHolder(item){
@@ -23,10 +23,8 @@ class BookAdapter(private val dataset: Array<String>) :
         return MyViewHolder(v)
     }
 
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // todo change img resource
-        holder.iconImage.setImageResource(R.drawable.dummy_icon)
+        holder.iconImage.setImageResource(dataset.get(position).iconImg)
 
     }
 

@@ -9,11 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BookshelfFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BookshelfFragment : Fragment() {
     private val TAG = "BookshelfFragment"
 
@@ -24,9 +19,10 @@ class BookshelfFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d(TAG, "test3")
-        //todo change dummy dataset
-        val dataset = arrayOf("test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8")
+        Log.d(TAG, "$TAG - onCreateView")
+
+        // generate dataset by initialising fables
+        val dataset = (activity as MainActivity).initFables()
         root = inflater.inflate(R.layout.fragment_bookshelf, container, false)
 
         // Init recyclerview
@@ -40,8 +36,6 @@ class BookshelfFragment : Fragment() {
             adapter = BookAdapter(dataset)
 
         }
-
-        Log.d(TAG, "test")
 
         // Inflate the layout for this fragment
         return root
