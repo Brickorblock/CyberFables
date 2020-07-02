@@ -58,6 +58,7 @@ class BookshelfFragment : Fragment() {
         val dataset = (activity as MainActivity).initFables()
         root = inflater.inflate(R.layout.fragment_bookshelf, container, false)
 
+        onChosen(dataset[0])
 
         // Init recyclerview
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView).apply{
