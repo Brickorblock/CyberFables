@@ -2,24 +2,34 @@ package com.example.cyberfables
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cyberfables.entities.Fable
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    BookshelfFragment.OnBookSelected {
 
     private val TAG = "MainActivity"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //TODO implement fragment switching to book when selected in BookDetail
         //attach BookshelfFragment
-        val fragManager = supportFragmentManager
-        val fragTransaction = fragManager.beginTransaction()
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.main_root, BookshelfFragment.newInstance(), "BookshelfFragment")
+                .commit()
+        }
 
-        val fragment = BookshelfFragment()
-        fragTransaction.add(R.id.main_root, fragment).commit()
-
+    }
+    //TODO implement proper fragment messaging if needed
+    override fun onBookSelected(fable: Fable) {
+        Toast.makeText(this, "Hey, you selected " + fable.title + "!",
+            Toast.LENGTH_SHORT).show()
     }
 
     fun initFables(): ArrayList<Fable> {
