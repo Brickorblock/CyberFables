@@ -57,7 +57,7 @@ class BookshelfFragment : Fragment() {
         // generate dataset by initialising fables
         val dataset = (activity as MainActivity).initFables()
         root = inflater.inflate(R.layout.fragment_bookshelf, container, false)
-
+        onChosen(dataset[0])
 
         // Init recyclerview
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView).apply{
@@ -75,7 +75,7 @@ class BookshelfFragment : Fragment() {
         return root
     }
 
-
+//TODO show selected book in recyclerview
     internal inner class BookAdapter(private val dataset: ArrayList<Fable>) :
         RecyclerView.Adapter<BookAdapter.MyViewHolder>() {
 
