@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_book_detail.*
@@ -43,7 +44,8 @@ class BookDetail : Fragment() {
         title.text = param1!!.title
         val blurb: TextView = root.findViewById(R.id.textView2) as TextView
         blurb.text = param1!!.blurb
-
+        val cover: ImageView = root.findViewById(R.id.imageView) as ImageView
+        cover.setImageResource(param1!!.coverImg)
         return root;
     }
 
