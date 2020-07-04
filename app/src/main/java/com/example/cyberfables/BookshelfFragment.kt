@@ -12,15 +12,18 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cyberfables.entities.Fable
-import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 
 class BookshelfFragment : Fragment() {
     private val TAG = "BookshelfFragment"
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var root: View
+
     //TODO does mainactivity need to know when a book is selected
     private lateinit var listener: OnBookSelected
+
+    private var selectedPosition = 0
+    private var prevPosition = 0
 
     companion object {
 
@@ -39,12 +42,21 @@ class BookshelfFragment : Fragment() {
         }
     }
 
-    //TODO Add animations for switching out books
-    fun onChosen(fable : Fable){
-        childFragmentManager
-            .beginTransaction()
-            .replace(R.id.childFragment, BookDetail.newInstance(fable), "bookDetail")
-            .commit()
+    // swithces to fable; uses position and prevPosition to determine switching animations
+    fun onChosen(fable: Fable, position: Int) {
+
+        val transaction = childFragmentManager.beginTransaction()
+        // specify custom animation
+        if (position > prevPosition) {
+            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+        } else if (position < prevPosition) {
+            transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
+
+        transaction.replace(R.id.childFragment, BookDetail.newInstance(fable), "bookDetail")
+        transaction.commit()
+
+        prevPosition = position
     }
 
 
@@ -54,15 +66,15 @@ class BookshelfFragment : Fragment() {
     ): View? {
         Log.d(TAG, "$TAG - onCreateView")
 
-
         // generate dataset by initialising fables
         val dataset = (activity as MainActivity).initFables()
         root = inflater.inflate(R.layout.fragment_bookshelf, container, false)
 
-        onChosen(dataset[0])
+        // set initial fable selected
+        onChosen(dataset[0], 0)
 
         // Init recyclerview
-        recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView).apply{
+        recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView).apply {
             setHasFixedSize(true)
 
             // set horizontal layout
@@ -82,7 +94,7 @@ class BookshelfFragment : Fragment() {
         RecyclerView.Adapter<BookAdapter.MyViewHolder>() {
 
 
-        inner class MyViewHolder(val item: View) : RecyclerView.ViewHolder(item){
+        inner class MyViewHolder(val item: View) : RecyclerView.ViewHolder(item) {
             val iconImage = item.findViewById<ImageView>(R.id.iconImage)
 
         }
@@ -95,11 +107,22 @@ class BookshelfFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+            // highlight selected itemView
+            if (position == selectedPosition){
+                holder.itemView.setBackgroundColor(resources.getColor(R.color.colorAccentLight))
+            } else {
+                //clear highlight
+                holder.itemView.setBackgroundColor(0)
+            }
+
             val book = dataset[position]
             holder.iconImage.setImageResource(dataset[position].iconImg)
             holder.itemView.setOnClickListener { listener.onBookSelected(book) }
             holder.itemView.setOnClickListener {
-                onChosen(book)
+                // update positions & dataset (for itemview highlighting), then switch fragment
+                selectedPosition = position
+                onChosen(book, position)
+                notifyDataSetChanged()
             }
         }
 
@@ -109,6 +132,7 @@ class BookshelfFragment : Fragment() {
 
 
     }
+
     interface OnBookSelected {
         fun onBookSelected(fable: Fable)
     }
