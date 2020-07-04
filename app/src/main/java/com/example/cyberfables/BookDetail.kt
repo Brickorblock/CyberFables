@@ -1,10 +1,12 @@
 package com.example.cyberfables
 
+import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_book_detail.*
@@ -12,13 +14,7 @@ import kotlinx.android.synthetic.main.fragment_book_detail.*
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BookDetail.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BookDetail : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: Fable? = null
@@ -43,20 +39,13 @@ class BookDetail : Fragment() {
         title.text = param1!!.title
         val blurb: TextView = root.findViewById(R.id.textView2) as TextView
         blurb.text = param1!!.blurb
+        val cover: ImageView = root.findViewById(R.id.coverImage) as ImageView
+        cover.setImageResource(param1!!.coverImg)
 
         return root;
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BookDetail.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(book: Fable) =
             BookDetail().apply {

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cyberfables.entities.Fable
+import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 
 class BookshelfFragment : Fragment() {
     private val TAG = "BookshelfFragment"
@@ -58,6 +59,7 @@ class BookshelfFragment : Fragment() {
         val dataset = (activity as MainActivity).initFables()
         root = inflater.inflate(R.layout.fragment_bookshelf, container, false)
 
+        onChosen(dataset[0])
 
         // Init recyclerview
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView).apply{

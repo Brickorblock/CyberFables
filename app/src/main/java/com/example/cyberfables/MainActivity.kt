@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(),
 
         val fable2 = Fable(
             "Nisemonogatari",
-            "[TEST 2] Nisemonogatari serves as a direct sequel to Bakemonogatari, following the story of Koyomi Araragi as he continues his relationships with the characters from the series. The two-part novel focuses on supernatural events that involve Koyomi's two younger sisters, Karen Araragi and Tsukihi Araragi.",
+            "[TEST 2] Nisemonogatari serves as a direct sequel to Bakemonogatari, following the story of Koyomi Araragi as he continues his relationships with the characters from the series. The two-part novel focuses on supernatural events that involve Koyomi's two younger sisters...",
             R.drawable.test_cover2,
             R.drawable.test_icon2,
             arrayListOf(R.drawable.test_cover2)
