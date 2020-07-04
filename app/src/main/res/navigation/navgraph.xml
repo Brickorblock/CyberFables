@@ -8,5 +8,18 @@
     <fragment
         android:id="@+id/bookshelfFragment"
         android:name="com.example.cyberfables.BookshelfFragment"
-        android:label="BookshelfFragment" />
+        android:label="BookshelfFragment" >
+        <action
+            android:id="@+id/action_bookshelfFragment_to_readerFragment"
+            app:destination="@id/readerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/readerFragment"
+        android:name="com.example.cyberfables.entities.readerFragment"
+        android:label="fragment_reader"
+        tools:layout="@layout/fragment_reader" />
 </navigation>

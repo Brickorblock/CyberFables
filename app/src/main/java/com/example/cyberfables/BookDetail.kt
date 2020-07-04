@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_book_detail.*
 
@@ -46,7 +47,17 @@ class BookDetail : Fragment() {
         blurb.text = param1!!.blurb
         val cover: ImageView = root.findViewById(R.id.imageView) as ImageView
         cover.setImageResource(param1!!.coverImg)
+
         return root;
+    }
+
+    // Todo: remember not to mess with this when refractoring
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        // handle switching fragments on button press
+        readButton.setOnClickListener(Navigation.createNavigateOnClickListener(
+            R.id.action_bookshelfFragment_to_readerFragment))
     }
 
     companion object {

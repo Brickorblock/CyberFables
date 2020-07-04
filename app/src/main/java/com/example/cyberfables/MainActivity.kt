@@ -4,26 +4,25 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.example.cyberfables.entities.Fable
 
 class MainActivity : AppCompatActivity(),
     BookshelfFragment.OnBookSelected {
 
     private val TAG = "MainActivity"
+    lateinit var navController: NavController
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //TODO implement fragment switching to book when selected in BookDetail
-        //attach BookshelfFragment
-        if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.main_root, BookshelfFragment.newInstance(), "BookshelfFragment")
-                .commit()
-        }
+        //Setup nav controller
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
     }
     //TODO implement proper fragment messaging if needed
