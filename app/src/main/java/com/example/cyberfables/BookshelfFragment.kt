@@ -71,7 +71,7 @@ class BookshelfFragment : Fragment() {
         root = inflater.inflate(R.layout.fragment_bookshelf, container, false)
 
         // set initial fable selected
-        onChosen(dataset[0], 0)
+        onChosen(dataset[selectedPosition], 0)
 
         // Init recyclerview
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView).apply {
