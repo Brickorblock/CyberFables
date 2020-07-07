@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/readerFragment"
-        android:name="com.example.cyberfables.entities.readerFragment"
+        android:name="com.example.cyberfables.reader.ReaderFragment"
         android:label="fragment_reader"
         tools:layout="@layout/fragment_reader" />
 </navigation>
