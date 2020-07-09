@@ -5,12 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
+import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_storypage.view.*
 
 class ReaderAdapter(
-    val pages: ArrayList<Int>
+    val fable: Fable
+
 ): RecyclerView.Adapter<ReaderAdapter.ReaderViewHolder>() {
+    lateinit var mRecyclerView: RecyclerView
+
     inner class ReaderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReaderViewHolder {
@@ -19,11 +24,40 @@ class ReaderAdapter(
         return ReaderViewHolder(v)
     }
 
-    override fun getItemCount() = pages.size
+    override fun getItemCount() = fable.pageCount
 
     override fun onBindViewHolder(holder: ReaderViewHolder, position: Int) {
-        val curr = pages[position]
+
+        //launch interactive fragment when reached
+        if (checkInteractivePosition(position)) {
+            //todo currently a bug - for some reason sometimes the position skips ahead by 1
+            (mRecyclerView.context as MainActivity).navController.navigate(R.id.action_readerFragment_to_littleredInteractive1Fragment)
+
+            //holder.itemView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_readerFragment_to_littleredInteractive1Fragment))
+        }
+
+        val curr = fable.pages[position]
         Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
         holder.itemView.pageImage.setImageResource(curr)
     }
+
+    private fun checkInteractivePosition(position: Int): Boolean {
+        var interactiveReached = false
+
+        Log.d("ReaderAdapter", "checkInteractivePosition, position = $position")
+
+        //todo change hardcode
+        if (position == 5) {
+            interactiveReached = true
+        }
+
+        return interactiveReached
+    }
+
+    // used to reference recyclerview within onBindViewHolder
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        mRecyclerView = recyclerView
+    }
+
 }

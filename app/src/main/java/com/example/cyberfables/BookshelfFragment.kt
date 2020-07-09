@@ -12,8 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cyberfables.entities.Fable
+import com.example.cyberfables.reader.ReaderAdapter
 
-class BookshelfFragment : Fragment() {
+class BookshelfFragment: Fragment() {
     private val TAG = "BookshelfFragment"
 
     private lateinit var recyclerView: RecyclerView
@@ -22,7 +23,7 @@ class BookshelfFragment : Fragment() {
     //TODO does mainactivity need to know when a book is selected
     private lateinit var listener: OnBookSelected
 
-    private var selectedPosition = 0
+    var selectedPosition = 0
     private var prevPosition = 0
 
     companion object {
@@ -67,7 +68,7 @@ class BookshelfFragment : Fragment() {
         Log.d(TAG, "$TAG - onCreateView")
 
         // generate dataset by initialising fables
-        val dataset = (activity as MainActivity).initFables()
+        val dataset = (activity as MainActivity).fables
         root = inflater.inflate(R.layout.fragment_bookshelf, container, false)
 
         // set initial fable selected

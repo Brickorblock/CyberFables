@@ -21,5 +21,18 @@
         android:id="@+id/readerFragment"
         android:name="com.example.cyberfables.reader.ReaderFragment"
         android:label="fragment_reader"
-        tools:layout="@layout/fragment_reader" />
+        tools:layout="@layout/fragment_reader" >
+        <action
+            android:id="@+id/action_readerFragment_to_littleredInteractive1Fragment"
+            app:destination="@id/littleredInteractive1Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/littleredInteractive1Fragment"
+        android:name="com.example.cyberfables.LittleredInteractive1Fragment"
+        android:label="fragment_littlered_interactive1"
+        tools:layout="@layout/fragment_littlered_interactive1" />
 </navigation>

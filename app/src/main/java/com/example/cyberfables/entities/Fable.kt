@@ -2,8 +2,12 @@ package com.example.cyberfables.entities
 
 import android.os.Parcelable
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import com.example.cyberfables.BookDetail
+import com.example.cyberfables.BookshelfFragment
 import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 @Parcelize
 class Fable (
@@ -17,4 +21,5 @@ class Fable (
 ) : Parcelable {
     @IgnoredOnParcel
     val pageCount = pages.size
+
 }

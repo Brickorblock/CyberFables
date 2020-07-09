@@ -56,6 +56,7 @@ class BookDetail : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         // handle switching fragments on button press
+
         readButton.setOnClickListener(Navigation.createNavigateOnClickListener(
             R.id.action_bookshelfFragment_to_readerFragment))
     }

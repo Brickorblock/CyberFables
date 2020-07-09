@@ -15,11 +15,13 @@ class MainActivity : AppCompatActivity(),
 
     private val TAG = "MainActivity"
     lateinit var navController: NavController
-
+    var fables : ArrayList<Fable> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        initFables()
 
         //Setup nav controller
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
@@ -33,14 +35,13 @@ class MainActivity : AppCompatActivity(),
 
     fun initFables(): ArrayList<Fable> {
         Log.d(TAG, "initFables Called")
-        var fables: ArrayList<Fable> = ArrayList()
 
         val fable1 = Fable(
             "Kizumonogatari",
             "[TEST 1] This prequel novel features the life of Koyomi Araragi before the events in Hitagi Crab. It details Araragi's encounter with the vampire Kiss-shot Acerola-orion Heart-under-blade and his journey back into humanity from being a vampire.",
             R.drawable.test_cover1,
             R.drawable.test_icon1,
-            arrayListOf(R.drawable.test_cover1)
+            arrayListOf(R.drawable.test1, R.drawable.little_red2a, R.drawable.little_red3a, R.drawable.test1, R.drawable.little_red2a, R.drawable.little_red3a)
         )
 
         val fable2 = Fable(
