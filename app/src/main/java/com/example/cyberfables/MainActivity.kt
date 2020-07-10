@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.example.cyberfables.database.AppDatabase
 import com.example.cyberfables.entities.Fable
 
 class MainActivity : AppCompatActivity(),
@@ -21,7 +22,8 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initFables()
+        val db = AppDatabase.getDatabase(applicationContext)
+        db.fableDao().insertFables(initFables())
 
         //Setup nav controller
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity(),
         Log.d(TAG, "initFables Called")
 
         val fable1 = Fable(
+            0,
             "Kizumonogatari",
             "[TEST 1] This prequel novel features the life of Koyomi Araragi before the events in Hitagi Crab. It details Araragi's encounter with the vampire Kiss-shot Acerola-orion Heart-under-blade and his journey back into humanity from being a vampire.",
             R.drawable.test_cover1,
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity(),
         )
 
         val fable2 = Fable(
+            1,
             "Nisemonogatari",
             "[TEST 2] Nisemonogatari serves as a direct sequel to Bakemonogatari, following the story of Koyomi Araragi as he continues his relationships with the characters from the series. The two-part novel focuses on supernatural events that involve Koyomi's two younger sisters...",
             R.drawable.test_cover2,

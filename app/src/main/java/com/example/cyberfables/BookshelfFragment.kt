@@ -12,8 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cyberfables.database.AppDatabase
 import com.example.cyberfables.entities.Fable
-import com.example.cyberfables.reader.ReaderAdapter
 
 class BookshelfFragment: Fragment() {
     private val TAG = "BookshelfFragment"
@@ -45,9 +45,10 @@ class BookshelfFragment: Fragment() {
     }
 
     // swithces to fable; uses position and prevPosition to determine switching animations
-    fun onChosen(fable: Fable, position: Int) {
+    fun onChosen(fable: Fable) {
 
         val transaction = childFragmentManager.beginTransaction()
+        val position = fable.id
         // specify custom animation
         if (position > prevPosition) {
             transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -69,11 +70,12 @@ class BookshelfFragment: Fragment() {
         Log.d(TAG, "$TAG - onCreateView")
 
         // generate dataset by initialising fables
-        val dataset = (activity as MainActivity).fables
+        val db = AppDatabase.getDatabase(requireContext())
+        val dataset = db.fableDao().getAllFables()
         root = inflater.inflate(R.layout.fragment_bookshelf, container, false)
 
         // set initial fable selected
-        onChosen(dataset[selectedPosition], 0)
+        onChosen(dataset[0])
 
         // Init recyclerview
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView).apply {
@@ -83,7 +85,7 @@ class BookshelfFragment: Fragment() {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
             // set adapter
-            adapter = BookAdapter(dataset)
+            adapter = BookAdapter(dataset as ArrayList<Fable>)
 
         }
 
@@ -123,7 +125,7 @@ class BookshelfFragment: Fragment() {
             holder.itemView.setOnClickListener {
                 // update positions & dataset (for itemview highlighting), then switch fragment
                 selectedPosition = position
-                onChosen(book, position)
+                onChosen(book)
                 notifyDataSetChanged()
             }
         }
