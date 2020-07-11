@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
@@ -14,12 +15,14 @@ class ReaderAdapter(
     val fable: Fable
 
 ): RecyclerView.Adapter<ReaderAdapter.ReaderViewHolder>() {
-    lateinit var mRecyclerView: RecyclerView
+    private lateinit var mRecyclerView: RecyclerView
+    private var positionCounter = -1
 
     inner class ReaderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReaderViewHolder {
         Log.d("ReaderAdapter", "OnCreateViewHolder")
+
         val v = LayoutInflater.from(parent.context).inflate(R.layout.fragment_storypage, parent, false)
         return ReaderViewHolder(v)
     }
@@ -28,6 +31,12 @@ class ReaderAdapter(
 
     override fun onBindViewHolder(holder: ReaderViewHolder, position: Int) {
 
+        val curr = fable.pages[position]
+        Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
+        holder.itemView.pageImage.setImageResource(curr)
+
+        //holder.itemView.textView.setText("Position = " + position)
+
         //launch interactive fragment when reached
         if (checkInteractivePosition(position)) {
             //todo currently a bug - for some reason sometimes the position skips ahead by 1
@@ -35,13 +44,10 @@ class ReaderAdapter(
 
             //holder.itemView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_readerFragment_to_littleredInteractive1Fragment))
         }
-
-        val curr = fable.pages[position]
-        Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
-        holder.itemView.pageImage.setImageResource(curr)
     }
 
     private fun checkInteractivePosition(position: Int): Boolean {
+
         var interactiveReached = false
 
         Log.d("ReaderAdapter", "checkInteractivePosition, position = $position")

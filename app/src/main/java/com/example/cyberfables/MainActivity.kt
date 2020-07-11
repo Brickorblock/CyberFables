@@ -6,8 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import com.example.cyberfables.entities.Fable
 
 class MainActivity : AppCompatActivity(),
@@ -15,7 +13,7 @@ class MainActivity : AppCompatActivity(),
 
     private val TAG = "MainActivity"
     lateinit var navController: NavController
-    var fables : ArrayList<Fable> = ArrayList()
+    var fables: ArrayList<Fable> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +25,13 @@ class MainActivity : AppCompatActivity(),
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
     }
+
     //TODO implement proper fragment messaging if needed
     override fun onBookSelected(fable: Fable) {
-        Toast.makeText(this, "Hey, you selected " + fable.title + "!",
-            Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this, "Hey, you selected " + fable.title + "!",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     fun initFables(): ArrayList<Fable> {
@@ -41,7 +42,14 @@ class MainActivity : AppCompatActivity(),
             "[TEST 1] This prequel novel features the life of Koyomi Araragi before the events in Hitagi Crab. It details Araragi's encounter with the vampire Kiss-shot Acerola-orion Heart-under-blade and his journey back into humanity from being a vampire.",
             R.drawable.test_cover1,
             R.drawable.test_icon1,
-            arrayListOf(R.drawable.test1, R.drawable.little_red2a, R.drawable.little_red3a, R.drawable.test1, R.drawable.little_red2a, R.drawable.little_red3a)
+            arrayListOf(
+                R.drawable.test1,
+                R.drawable.little_red2a,
+                R.drawable.little_red3a,
+                R.drawable.test1,
+                R.drawable.little_red2a,
+                R.drawable.little_red3a
+            )
         )
 
         val fable2 = Fable(

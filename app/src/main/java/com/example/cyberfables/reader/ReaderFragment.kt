@@ -31,16 +31,8 @@ class ReaderFragment : Fragment(){
         val readerAdapter = ReaderAdapter(fable)
         viewPager.adapter = readerAdapter
 
-
         // Inflate the layout for this fragment
         return root
-    }
-
-    //todo change hardcode
-    fun navigateToInteractive() {
-        Log.d(TAG, "navigateToInteractive")
-
-        (activity as MainActivity).navController.navigate(R.id.action_readerFragment_to_littleredInteractive1Fragment)
     }
 
 
