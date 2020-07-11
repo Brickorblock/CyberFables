@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -110,7 +111,7 @@ class BookshelfFragment: Fragment() {
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             // highlight selected itemView
             if (position == selectedPosition){
-                holder.itemView.setBackgroundColor(resources.getColor(R.color.colorAccentLight))
+                holder.itemView.setBackgroundColor(ContextCompat.getColor(context!!,R.color.colorAccentLight))
             } else {
                 //clear highlight
                 holder.itemView.setBackgroundColor(0)
