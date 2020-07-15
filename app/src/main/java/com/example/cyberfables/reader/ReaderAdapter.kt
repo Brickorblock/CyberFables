@@ -32,28 +32,30 @@ class ReaderAdapter(
     override fun onBindViewHolder(holder: ReaderViewHolder, position: Int) {
 
         val curr = fable.pages[position]
+        // prev paged used to check interactive
+        var prev = curr
+        if (position > 0) {
+            prev = fable.pages[position - 1]
+        }
+
         Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
         holder.itemView.pageImage.setImageResource(curr)
 
-        //holder.itemView.textView.setText("Position = " + position)
-
-        //launch interactive fragment when reached
-        if (checkInteractivePosition(position)) {
-            //todo currently a bug - for some reason sometimes the position skips ahead by 1
+        //launch interactive fragment when reached - checking using prev page because adapter always
+        //loads one position ahead so curr page is actually the next page.
+        if (checkInteractive(prev)) {
             (mRecyclerView.context as MainActivity).navController.navigate(R.id.action_readerFragment_to_littleredInteractive1Fragment)
-
-            //holder.itemView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_readerFragment_to_littleredInteractive1Fragment))
         }
     }
 
-    private fun checkInteractivePosition(position: Int): Boolean {
+    private fun checkInteractive(page: Int): Boolean {
 
         var interactiveReached = false
 
-        Log.d("ReaderAdapter", "checkInteractivePosition, position = $position")
+        Log.d("ReaderAdapter", "checkInteractivePosition, position = $page")
 
         //todo change hardcode
-        if (position == 5) {
+        if (page == R.drawable.littlered_3_decision1) {
             interactiveReached = true
         }
 

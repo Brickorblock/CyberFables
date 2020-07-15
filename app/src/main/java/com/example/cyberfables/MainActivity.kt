@@ -44,13 +44,18 @@ class MainActivity : AppCompatActivity(),
             R.drawable.test_cover1,
             R.drawable.test_icon1,
             arrayListOf(
-                R.drawable.test1,
-                R.drawable.little_red2a,
-                R.drawable.little_red3a,
-                R.drawable.test1,
-                R.drawable.little_red2a,
-                R.drawable.little_red3a
-            )
+                R.drawable.littlered_1,
+                R.drawable.littlered_2,
+                R.drawable.littlered_3,
+                R.drawable.littlered_3_decision1,
+                R.drawable.littlered_4,
+                R.drawable.littlered_5,
+                R.drawable.littlered_6,
+                R.drawable.littlered_6_decision2,
+                R.drawable.littlered_7
+            ),
+            listOf(R.drawable.littlered_3_decision1),
+            listOf(R.id.action_readerFragment_to_littleredInteractive1Fragment)
         )
 
         val fable2 = Fable(
@@ -59,7 +64,8 @@ class MainActivity : AppCompatActivity(),
             "[TEST 2] Nisemonogatari serves as a direct sequel to Bakemonogatari, following the story of Koyomi Araragi as he continues his relationships with the characters from the series. The two-part novel focuses on supernatural events that involve Koyomi's two younger sisters...",
             R.drawable.test_cover2,
             R.drawable.test_icon2,
-            arrayListOf(R.drawable.test_cover2)
+            arrayListOf(R.drawable.test_cover2),
+            listOf(), listOf()
         )
 
         fables.add(fable1)

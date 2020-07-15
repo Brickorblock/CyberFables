@@ -134,7 +134,6 @@ class BookshelfFragment: Fragment() {
             return dataset.size
         }
 
-
     }
 
     interface OnBookSelected {
