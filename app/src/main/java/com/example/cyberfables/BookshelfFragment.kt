@@ -56,7 +56,7 @@ class BookshelfFragment: Fragment() {
             transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
-        transaction.replace(R.id.childFragment, BookDetail.newInstance(fable), "bookDetail")
+        transaction.replace(R.id.childFragment, BookDetailFragment(fable), "bookDetail")
         transaction.commit()
 
         prevPosition = position
