@@ -1,6 +1,7 @@
 package com.example.cyberfables.reader
 
 import android.os.Bundle
+import android.provider.Contacts.SettingsColumns.KEY
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.cyberfables.BookDetailFragment
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_reader.view.*
 
 class ReaderFragment : Fragment(){
+
     private val TAG = "ReaderFragment"
 
     override fun onCreateView(
@@ -22,8 +25,8 @@ class ReaderFragment : Fragment(){
     ): View? {
         val root = inflater.inflate(R.layout.fragment_reader, container, false)
 
-        //todo change hardcode
-        val fable = (activity as MainActivity).fables[0]
+        //grab fable from bundle args (from BookDetailFragment)
+        val fable = (requireArguments().get(BookDetailFragment.KEY) as Fable)
 
         // Instantiate a ViewPager2 and a PagerAdapter.
         val viewPager = root.readerPager
