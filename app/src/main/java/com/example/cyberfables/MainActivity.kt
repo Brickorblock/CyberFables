@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(),
                 R.drawable.littlered_6,
                 R.drawable.littlered_6_decision2,
                 R.drawable.littlered_7
+
             ),
             listOf(R.drawable.littlered_3_decision1),
             listOf(R.id.action_readerFragment_to_littleredInteractive1Fragment)
