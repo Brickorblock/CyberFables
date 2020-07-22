@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity(),
 
         val fable1 = Fable(
             0,
-            "Kizumonogatari",
-            "[TEST 1] This prequel novel features the life of Koyomi Araragi before the events in Hitagi Crab. It details Araragi's encounter with the vampire Kiss-shot Acerola-orion Heart-under-blade and his journey back into humanity from being a vampire.",
+            "Little Red & the Cyber Wolf",
+            "[PLACEHOLDER] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec lorem augue. Donec finibus interdum laoreet. Phasellus lorem felis, consequat vitae finibus eget, tempor ut libero. Suspendisse quis orci tellus. ",
             R.drawable.test_cover1,
             R.drawable.test_icon1,
             arrayListOf(
@@ -60,11 +60,24 @@ class MainActivity : AppCompatActivity(),
 
         val fable2 = Fable(
             1,
-            "Nisemonogatari",
-            "[TEST 2] Nisemonogatari serves as a direct sequel to Bakemonogatari, following the story of Koyomi Araragi as he continues his relationships with the characters from the series. The two-part novel focuses on supernatural events that involve Koyomi's two younger sisters...",
+            "Safe & Secure Wins the Race!",
+            "[PLACEHOLDER] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec lorem augue. Donec finibus interdum laoreet. Phasellus lorem felis, consequat vitae finibus eget, tempor ut libero. Suspendisse quis orci tellus. ",
             R.drawable.test_cover2,
             R.drawable.test_icon2,
-            arrayListOf(R.drawable.test_cover2),
+            arrayListOf(
+                R.drawable.tortoise_1,
+                R.drawable.tortoise_2,
+                R.drawable.tortoise_3,
+                R.drawable.tortoise_4,
+                R.drawable.tortoise_5,
+                R.drawable.tortoise_6,
+                R.drawable.tortoise_7,
+                R.drawable.tortoise_8,
+                R.drawable.tortoise_10,
+                R.drawable.tortoise_11,
+                R.drawable.tortoise_12,
+                R.drawable.tortoise_13
+            ),
             //empty lists = no interactive content
             listOf(), listOf()
         )
