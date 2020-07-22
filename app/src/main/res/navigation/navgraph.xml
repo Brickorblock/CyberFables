@@ -28,7 +28,18 @@
     </fragment>
     <fragment
         android:id="@+id/littleredInteractive1Fragment"
-        android:name="com.example.cyberfables.LittleredInteractive1Fragment"
+        android:name="com.example.cyberfables.interactives.LittleredInteractive1Fragment"
         android:label="fragment_littlered_interactive1"
-        tools:layout="@layout/fragment_littlered_interactive1" />
+        tools:layout="@layout/fragment_littlered_interactive1" >
+        <action
+            android:id="@+id/action_littleredInteractive1Fragment_to_littleredResult1Fragment"
+            app:destination="@id/littleredResult1Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/littleredResult1Fragment"
+        android:name="com.example.cyberfables.interactives.LittleredResult1Fragment"
+        android:label="fragment_littlered_result1"
+        tools:layout="@layout/fragment_littlered_result1" />
 </navigation>

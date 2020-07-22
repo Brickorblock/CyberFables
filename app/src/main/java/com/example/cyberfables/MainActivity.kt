@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity(),
             R.drawable.test_cover2,
             R.drawable.test_icon2,
             arrayListOf(R.drawable.test_cover2),
+            //empty lists = no interactive content
             listOf(), listOf()
         )
 
