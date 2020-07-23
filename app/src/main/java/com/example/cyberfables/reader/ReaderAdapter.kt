@@ -15,7 +15,6 @@ class ReaderAdapter(
 
 ) : RecyclerView.Adapter<ReaderAdapter.ReaderViewHolder>() {
     private lateinit var mRecyclerView: RecyclerView
-    private var positionCounter = -1
 
     inner class ReaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 

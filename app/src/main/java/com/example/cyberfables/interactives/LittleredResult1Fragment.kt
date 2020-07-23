@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import kotlinx.android.synthetic.main.fragment_littlered_interactive1.*
 import kotlinx.android.synthetic.main.fragment_littlered_result1.*
@@ -39,8 +40,6 @@ class LittleredResult1Fragment() : Fragment() {
         } else {
             pageImage.setImageResource(R.drawable.littlered_3_decision1_incorrect)
         }
-
-
 
         // Inflate the layout for this fragment
         return root

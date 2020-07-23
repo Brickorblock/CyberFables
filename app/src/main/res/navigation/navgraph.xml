@@ -41,5 +41,9 @@
         android:id="@+id/littleredResult1Fragment"
         android:name="com.example.cyberfables.interactives.LittleredResult1Fragment"
         android:label="fragment_littlered_result1"
-        tools:layout="@layout/fragment_littlered_result1" />
+        tools:layout="@layout/fragment_littlered_result1" >
+        <action
+            android:id="@+id/action_littleredResult1Fragment_to_readerFragment"
+            app:destination="@id/readerFragment" />
+    </fragment>
 </navigation>

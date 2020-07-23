@@ -35,7 +35,7 @@ class BookDetailFragment(val fable: Fable) : Fragment() {
         val cover: ImageView = root.imageView
         cover.setImageResource(fable.coverImg)
 
-        return root;
+        return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
