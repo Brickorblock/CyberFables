@@ -68,11 +68,14 @@ class MainActivity : AppCompatActivity(),
             R.drawable.fable2_cover,
             R.drawable.fable2_icon,
             // this is the first "chapter" - up to the first interactive fragment
+            // note - must include one page after the decision due to how the adapter handles
+            // interactive checks (looks at prev and curr pages)
             arrayListOf(
                 R.drawable.littlered_1,
                 R.drawable.littlered_2,
                 R.drawable.littlered_3,
-                R.drawable.littlered_3_decision1
+                R.drawable.littlered_3_decision1,
+                R.drawable.littlered_4
 
             ),
             listOf(R.drawable.littlered_3_decision1),

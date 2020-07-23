@@ -58,9 +58,10 @@ class ReaderAdapter(
 
         var interactiveReached = false
 
-        Log.d("ReaderAdapter", "checkInteractivePosition, position = $page")
+        Log.d("ReaderAdapter", "checkInteractivePosition, page = $page")
 
         for (interactivePage in fable.interactivePages!!) {
+            Log.d("ReaderAdapter", "checking interactive = $interactivePage")
             if (page == interactivePage) {
                 interactiveReached = true
             }
