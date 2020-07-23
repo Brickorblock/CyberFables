@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.Fable
@@ -38,7 +39,11 @@ class ReaderAdapter(
         }
 
         Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
-        holder.itemView.pageImage.setImageResource(curr)
+        Glide.with(holder.itemView.context)
+            .load(curr)
+            .dontAnimate()
+            .thumbnail(0.5f)
+            .into(holder.itemView.pageImage)
 
         //launch interactive fragment when reached - skip this if there are no interactives in fable
         if (!fable.interactivePages.isNullOrEmpty()) {

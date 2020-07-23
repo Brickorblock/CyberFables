@@ -43,6 +43,11 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
+    compile ("com.github.bumptech.glide:recyclerview-integration:4.11.0") {
+        // Excludes the support library because it's already included by Glide.
+        transitive = false
+    }
 
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
