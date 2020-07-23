@@ -25,6 +25,10 @@
         <action
             android:id="@+id/action_readerFragment_to_littleredInteractive1Fragment"
             app:destination="@id/littleredInteractive1Fragment" />
+        <action
+            android:id="@+id/action_readerFragment_to_bookshelfFragment"
+            app:destination="@id/bookshelfFragment"
+            app:enterAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/littleredInteractive1Fragment"

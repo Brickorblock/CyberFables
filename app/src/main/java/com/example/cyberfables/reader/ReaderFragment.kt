@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cyberfables.BookDetailFragment
@@ -34,6 +35,13 @@ class ReaderFragment : Fragment(){
         viewPager.adapter = readerAdapter
         //set the page the viewpager should show
         viewPager.setCurrentItem(fable.pageToOpenOn, false)
+
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            // Handle the back button event
+            (context as MainActivity).navController.navigate(R.id.action_readerFragment_to_bookshelfFragment)
+        }
+
+
         // Inflate the layout for this fragment
         return root
     }
