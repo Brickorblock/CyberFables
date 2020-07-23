@@ -35,11 +35,7 @@ class ReaderFragment : Fragment(){
         viewPager.adapter = readerAdapter
         //set the page the viewpager should show
         viewPager.setCurrentItem(fable.pageToOpenOn, false)
-
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            // Handle the back button event
-            (context as MainActivity).navController.navigate(R.id.action_readerFragment_to_bookshelfFragment)
-        }
+        
 
 
         // Inflate the layout for this fragment
