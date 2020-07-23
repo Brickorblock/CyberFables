@@ -21,9 +21,6 @@ class BookshelfFragment: Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var root: View
 
-    //TODO does mainactivity need to know when a book is selected
-    private lateinit var listener: OnBookSelected
-
     var selectedPosition = 0
     private var prevPosition = 0
 
@@ -36,12 +33,6 @@ class BookshelfFragment: Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        //attach BookshelfFragment
-        if (context is OnBookSelected) {
-            listener = context
-        } else {
-            throw ClassCastException("$context must implement OnBookSelected.")
-        }
     }
 
     // swithces to fable; uses position and prevPosition to determine switching animations
@@ -121,7 +112,6 @@ class BookshelfFragment: Fragment() {
 
             val book = dataset[position]
             holder.iconImage.setImageResource(dataset[position].iconImg)
-            holder.itemView.setOnClickListener { listener.onBookSelected(book) }
             holder.itemView.setOnClickListener {
                 // update positions & dataset (for itemview highlighting), then switch fragment
                 selectedPosition = position
@@ -136,9 +126,6 @@ class BookshelfFragment: Fragment() {
 
     }
 
-    interface OnBookSelected {
-        fun onBookSelected(fable: Fable)
-    }
 
 
 }

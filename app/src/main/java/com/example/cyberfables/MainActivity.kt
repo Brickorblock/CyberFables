@@ -2,15 +2,13 @@ package com.example.cyberfables
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.cyberfables.database.AppDatabase
 import com.example.cyberfables.entities.Fable
 
-class MainActivity : AppCompatActivity(),
-    BookshelfFragment.OnBookSelected {
+class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
     lateinit var navController: NavController
@@ -26,12 +24,6 @@ class MainActivity : AppCompatActivity(),
         //Setup nav controller
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-    }
-
-    //TODO implement proper fragment messaging if needed
-    override fun onBookSelected(fable: Fable) {
-        Toast.makeText(this, "Hey, you selected " + fable.title + "!",
-            Toast.LENGTH_SHORT).show()
     }
 
     fun initFables(): ArrayList<Fable> {
@@ -58,7 +50,7 @@ class MainActivity : AppCompatActivity(),
                 R.drawable.tortoise_13
             ),
             //empty lists = no interactive content
-            listOf(), listOf()
+            mutableListOf(), mutableListOf()
         )
 
         val fable2 = Fable(
@@ -78,8 +70,8 @@ class MainActivity : AppCompatActivity(),
                 R.drawable.littlered_4
 
             ),
-            listOf(R.drawable.littlered_3_decision1),
-            listOf(R.id.action_readerFragment_to_littleredInteractive1Fragment)
+            mutableListOf(R.drawable.littlered_3_decision1),
+            mutableListOf(R.id.action_readerFragment_to_littleredInteractive1Fragment)
         )
 
         val fable3 = Fable(
@@ -114,7 +106,7 @@ class MainActivity : AppCompatActivity(),
                 R.drawable.hansel_23
             ),
             //empty lists = no interactive content
-            listOf(), listOf()
+            mutableListOf(), mutableListOf()
         )
 
         fables.add(fable1)

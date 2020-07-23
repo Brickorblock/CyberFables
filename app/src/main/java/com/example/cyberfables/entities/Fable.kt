@@ -17,11 +17,9 @@ import kotlinx.android.parcel.Parcelize
     var coverImg: Int,
     // icon should be square aspect (pref 100 * 100)
     var iconImg: Int,
-    var pages: List<Int>,
-    val interactivePages: List<Int>?,
-    val interactiveFragmentsNav: List<Int>?
-) : Parcelable {
-    @IgnoredOnParcel
-    @Ignore
-    val pageCount = pages.size
-}
+    var pages: MutableList<Int>,
+    var interactivePages: MutableList<Int>?,
+    var interactiveFragmentsNav: MutableList<Int>?,
+    var pageToOpenOn: Int = 0
+
+) : Parcelable

@@ -26,7 +26,7 @@ class ReaderAdapter(
         return ReaderViewHolder(v)
     }
 
-    override fun getItemCount() = fable.pageCount
+    override fun getItemCount() = fable.pages.size
 
     override fun onBindViewHolder(holder: ReaderViewHolder, position: Int) {
 
