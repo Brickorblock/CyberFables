@@ -14,7 +14,12 @@ import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_book_detail.*
 import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 
-class BookDetailFragment(val fable: Fable) : Fragment() {
+class BookDetailFragment() : Fragment() {
+    var fable: Fable? = null
+
+    constructor(fable: Fable) : this() {
+        this.fable = fable
+    }
 
     companion object{
         val KEY = "BookDetailFragment"
@@ -28,12 +33,14 @@ class BookDetailFragment(val fable: Fable) : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var root = inflater.inflate(R.layout.fragment_book_detail, container, false)
-        val title: TextView = root.textView
-        title.text = fable.title
-        val blurb: TextView = root.textView2
-        blurb.text = fable.blurb
-        val cover: ImageView = root.imageView
-        cover.setImageResource(fable.coverImg)
+        if (fable != null) {
+            val title: TextView = root.textView
+            title.text = fable!!.title
+            val blurb: TextView = root.textView2
+            blurb.text = fable!!.blurb
+            val cover: ImageView = root.imageView
+            cover.setImageResource(fable!!.coverImg)
+        }
 
         return root
     }
@@ -41,15 +48,18 @@ class BookDetailFragment(val fable: Fable) : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        // bundle for passing Fable
-        // note: this is a pretty neat way of doing bundles in Kotlin
-        // from https://stackoverflow.com/questions/50934760/is-it-possible-to-send-arguments-other-than-string-or-integer-in-androids-new-n
-        var fableBundle = bundleOf(KEY to fable)
+        if (fable != null) {
+            // bundle for passing Fable
+            // note: this is a pretty neat way of doing bundles in Kotlin
+            // from https://stackoverflow.com/questions/50934760/is-it-possible-to-send-arguments-other-than-string-or-integer-in-androids-new-n
+            var fableBundle = bundleOf(KEY to fable)
 
             // handle switching fragments on button press
-        readButton.setOnClickListener {
-            //pass thru Fable & navigate
-            (context as MainActivity).navController.navigate(R.id.action_bookshelfFragment_to_readerFragment, fableBundle)
+            readButton.setOnClickListener {
+                //pass thru Fable & navigate
+                (context as MainActivity).navController.navigate(R.id.action_bookshelfFragment_to_readerFragment, fableBundle)
+            }
         }
+
     }
 }
