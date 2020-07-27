@@ -47,10 +47,12 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.tortoise_10,
                 R.drawable.tortoise_11,
                 R.drawable.tortoise_12,
-                R.drawable.tortoise_13
+                R.drawable.tortoise_13,
+                R.drawable.tortoise_1
             ),
             //empty lists = no interactive content
-            mutableListOf(), mutableListOf()
+            mutableListOf(R.drawable.tortoise_13),
+            mutableListOf(R.id.action_readerFragment_to_tortoiseInteractiveFragment)
         )
 
         val fable2 = Fable(

@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.Fable
+import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 import kotlinx.android.synthetic.main.fragment_storypage.view.*
 
 class ReaderAdapter(
@@ -50,8 +51,10 @@ class ReaderAdapter(
             // checking using prev page because adapter always
             // loads one position ahead so curr page is actually the next page.
             if (checkInteractive(prev)) {
+
+                //navigate to the "interactive version" of the page
                 (mRecyclerView.context as MainActivity).navController.
-                navigate(R.id.action_readerFragment_to_littleredInteractive1Fragment)
+                navigate(fable.interactiveFragmentsNav!![0])
             }
         } else {
             Log.d("ReaderAdapter", "No interactive pages - Skipping checkInteractive()...")
