@@ -133,7 +133,7 @@
         android:background="@drawable/rounded_button"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:text="Next ->"
+        android:text="Next"
         android:textAppearance="@style/bodyStrong"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
