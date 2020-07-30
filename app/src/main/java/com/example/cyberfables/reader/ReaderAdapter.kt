@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cyberfables.MainActivity
@@ -44,6 +45,16 @@ class ReaderAdapter(
             .dontAnimate()
             .thumbnail(0.5f)
             .into(holder.itemView.pageImage)
+
+        // if user stays on the 1st page for too long, animate a page swipe icon hint
+        if (position == 0) {
+            holder.itemView.swipe_icon.alpha = 1F
+            // play animations
+            val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_left);
+            anim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
+
+            holder.itemView.swipe_icon.animation = anim
+        }
 
         //launch interactive fragment when reached - skip this if there are no interactives in fable
         if (!fable.interactivePages.isNullOrEmpty() &&
