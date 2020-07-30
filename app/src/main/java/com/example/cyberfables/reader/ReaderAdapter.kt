@@ -43,7 +43,7 @@ class ReaderAdapter(
         Glide.with(holder.itemView.context)
             .load(curr)
             .dontAnimate()
-            .thumbnail(0.5f)
+            .thumbnail(0.1f)
             .into(holder.itemView.pageImage)
 
         // if user stays on the 1st page for too long, animate a page swipe icon hint
