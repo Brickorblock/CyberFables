@@ -42,7 +42,7 @@ class ReaderAdapter(
         Glide.with(holder.itemView.context)
             .load(curr)
             .dontAnimate()
-            .thumbnail(0.5f)
+            .thumbnail(0.1f)
             .into(holder.itemView.pageImage)
 
         //launch interactive fragment when reached - skip this if there are no interactives in fable
