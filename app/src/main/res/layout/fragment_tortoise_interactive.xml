@@ -8,7 +8,7 @@
     tools:context=".interactives.TortoiseInteractiveFragment">
 
     <Button
-        android:id="@+id/nextButton2"
+        android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"

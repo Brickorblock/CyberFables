@@ -8,7 +8,7 @@
     tools:context=".interactives.TortoiseInteractiveFragment">
 
     <TextView
-        android:id="@+id/password_text2"
+        android:id="@+id/passwordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PASSWORD"
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toTopOf="@+id/nextButton"
         app:layout_constraintEnd_toStartOf="@+id/phone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/resultText" />
 
     <ImageView
         android:id="@+id/phone"
@@ -66,7 +66,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
             android:text="Has Symbols (@$%*)"
-            android:textAppearance="@style/body"
+            android:textAppearance="@style/bodyStrong"
             android:textSize="20dp" />
 
         <TextView
@@ -75,8 +75,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="Has Symbols (@$%*)"
-            android:textAppearance="@style/body"
+            android:text="Has Numbers (1234)"
+            android:textAppearance="@style/bodyStrong"
             android:textSize="20dp" />
 
         <TextView
@@ -85,8 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="Has Symbols (@$%*)"
-            android:textAppearance="@style/body"
+            android:text="Has Uppercase (ABCD)"
+            android:textAppearance="@style/bodyStrong"
             android:textSize="20dp" />
 
         <TextView
@@ -95,14 +95,24 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="Has Symbols (@$%*)"
-            android:textAppearance="@style/body"
+            android:text="Has Lowercase (abcd)"
+            android:textAppearance="@style/bodyStrong"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/guessText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:text="Hard to Guess"
+            android:textAppearance="@style/bodyStrong"
             android:textSize="20dp" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/resultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

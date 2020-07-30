@@ -16,11 +16,10 @@
         android:background="@drawable/rounded_button"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:text="<- Exit "
+        android:text="Exit"
         android:textAppearance="@style/bodyStrong"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/replayButton"
-        app:layout_constraintEnd_toEndOf="@+id/hareImage"
         app:layout_constraintEnd_toStartOf="@+id/replayButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/backButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/scoreText" />
 
     <TextView
         android:id="@+id/gameoverText"
@@ -61,7 +60,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -79,7 +78,7 @@
         android:id="@+id/tortoiseImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintBottom_toTopOf="@+id/scoreText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

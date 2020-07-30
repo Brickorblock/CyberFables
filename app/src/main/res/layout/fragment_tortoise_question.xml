@@ -12,55 +12,100 @@
         android:layout_height="0dp"
         android:layout_marginStart="130dp"
         android:layout_marginLeft="130dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/phone"
-        app:layout_constraintBottom_toTopOf="@id/good_button"
+        app:layout_constraintBottom_toTopOf="@id/goodButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="0.43" />
 
     <ImageView
-        android:id="@+id/bad_button"
+        android:id="@+id/badButton"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:src="@drawable/bad_pw"
-        app:layout_constraintBottom_toBottomOf="@+id/good_button"
-        app:layout_constraintEnd_toStartOf="@+id/good_button"
+        app:layout_constraintBottom_toBottomOf="@+id/goodButton"
+        app:layout_constraintEnd_toStartOf="@+id/goodButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/good_button" />
+        app:layout_constraintTop_toTopOf="@+id/goodButton" />
 
     <ImageView
-        android:id="@+id/good_button"
+        android:id="@+id/goodButton"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/bad_pw"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/good_pw"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bad_button"
-        app:layout_constraintTop_toBottomOf="@+id/phone"
-        app:srcCompat="@drawable/good_pw" />
+        app:layout_constraintStart_toEndOf="@+id/badButton"
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <TextView
-        android:id="@+id/password_text"
+        android:id="@+id/passwordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PASSWORD"
         android:textAppearance="@style/bodyAccentStrong"
-        android:textSize="26sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/phone"
         app:layout_constraintEnd_toEndOf="@+id/phone"
         app:layout_constraintStart_toStartOf="@+id/phone"
         app:layout_constraintTop_toTopOf="@+id/phone" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/heart1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/heart_empty" />
+
+        <ImageView
+            android:id="@+id/heart2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/heart_filled" />
+
+        <ImageView
+            android:id="@+id/heart3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/heart_filled" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:text="Score: "
+        android:textAppearance="@style/bodyPrimaryStrong"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

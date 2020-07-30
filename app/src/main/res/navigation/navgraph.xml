@@ -87,14 +87,6 @@
         android:name="com.example.cyberfables.interactives.TortoiseInstructionFragment"
         android:label="TortoiseInstructionFragment" >
         <action
-            android:id="@+id/action_tortoiseInstructionFragment_to_tortoiseGameoverFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_open_exit"
-            app:popUpTo="@id/tortoiseInstructionFragment"
-            app:destination="@id/tortoiseGameoverFragment" />
-        <action
             android:id="@+id/action_tortoiseInstructionFragment_to_tortoiseQuestionFragment"
             app:destination="@id/tortoiseQuestionFragment"
             app:enterAnim="@anim/fragment_open_enter"
@@ -115,21 +107,39 @@
             app:popEnterAnim="@anim/fragment_open_enter"
             app:popExitAnim="@anim/fragment_open_exit"
             app:popUpTo="@id/tortoiseInstructionFragment"/>
+        <action
+            android:id="@+id/action_tortoiseAnswerFragment_to_tortoiseGameoverFragment"
+            app:destination="@id/tortoiseGameoverFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/bookshelfFragment" />
     </fragment>
     <fragment
         android:id="@+id/tortoiseGameoverFragment"
         android:name="com.example.cyberfables.interactives.TortoiseGameoverFragment"
-        android:label="TortoiseGameoverFragment" />
+        android:label="TortoiseGameoverFragment" >
+        <action
+            android:id="@+id/action_tortoiseGameoverFragment_to_tortoiseInstructionFragment"
+            app:destination="@id/tortoiseInstructionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit"
+            app:popUpTo="@id/bookshelfFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tortoiseQuestionFragment"
         android:name="com.example.cyberfables.interactives.TortoiseQuestionFragment"
         android:label="TortoiseQuestionFragment" >
         <action
+            android:id="@+id/action_tortoiseQuestionFragment_to_tortoiseAnswerFragment"
+            app:destination="@id/tortoiseAnswerFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_open_enter"
             app:popExitAnim="@anim/fragment_open_exit"
-            app:popUpTo="@id/tortoiseInstructionFragment"
-            app:destination="@id/tortoiseAnswerFragment" />
+            app:popUpTo="@id/tortoiseInstructionFragment" />
     </fragment>
 </navigation>

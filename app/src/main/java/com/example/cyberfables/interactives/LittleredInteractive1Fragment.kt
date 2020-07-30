@@ -48,8 +48,7 @@ class LittleredInteractive1Fragment : Fragment() {
             Log.d("LittleredInteractive", "evX = $evX, evY = $evY")
 
             if (action == MotionEvent.ACTION_UP) {
-                val pixelColour: Int = Helper()
-                    .getHitboxColour(hitboxes, evX, evY)
+                val pixelColour: Int = Helper().getHitboxColour(hitboxes, evX, evY)
                 Log.d("LittleredInteractive", "pixelColour = $pixelColour")
 
                 determineChoice(pixelColour)

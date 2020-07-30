@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/tortoise_interactive1" />
 
     <ImageView
-        android:id="@+id/hitbox"
+        android:id="@+id/hitboxes"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0"
