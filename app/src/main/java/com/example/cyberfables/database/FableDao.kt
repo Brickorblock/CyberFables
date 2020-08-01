@@ -17,7 +17,7 @@ interface FableDao {
     fun getAllFables(): List<Fable>
 
     //TODO make @insert queries suspend fun and add coroutines as well as a repository and viewmodel
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFables(fables: List<Fable>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
