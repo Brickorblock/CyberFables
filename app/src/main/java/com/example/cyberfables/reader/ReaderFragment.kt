@@ -2,18 +2,18 @@ package com.example.cyberfables.reader
 
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cyberfables.BookDetailFragment
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_reader.view.*
 
-class ReaderFragment : Fragment(){
+class ReaderFragment : Fragment() {
 
     private val TAG = "ReaderFragment"
 
@@ -51,11 +51,11 @@ class ReaderFragment : Fragment(){
             view.apply {
                 val pageWidth = width
                 when {
-                    position < -1 -> { // [-Infinity,-1)
+                    (position < -1) -> { // [-Infinity,-1)
                         // This page is way off-screen to the left.
                         alpha = 0f
                     }
-                    position <= 0 -> { // [-1,0]
+                    (position <= 0) -> { // [-1,0]
                         // Use the default slide transition when moving to the left page
                         alpha = 1f
                         translationX = 0f
@@ -63,7 +63,7 @@ class ReaderFragment : Fragment(){
                         scaleX = 1f
                         scaleY = 1f
                     }
-                    position <= 1 -> { // (0,1]
+                    (position <= 1) -> { // [0,1]
                         // Fade the page out.
                         alpha = 1 - position
 
