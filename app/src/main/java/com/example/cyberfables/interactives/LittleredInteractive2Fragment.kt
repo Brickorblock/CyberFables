@@ -91,10 +91,10 @@ class LittleredInteractive2Fragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }else if (red > 100){
-            choiceBundle = bundleOf(KEY to false)
+            choiceBundle = bundleOf(KEY to true)
             choiceMade = true
         }else if (blue > 100){
-            choiceBundle = bundleOf(KEY to true)
+            choiceBundle = bundleOf(KEY to false)
             choiceMade = true
         }
 
