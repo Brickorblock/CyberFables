@@ -33,7 +33,7 @@ class Helper {
     }
 
     //media player to play 1 off media files in the interactive activities
-    fun playSound(context: Context, sound: Int){
+    fun playSound(context: Context, sound: Int) {
         var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, sound )
         mediaPlayer?.start()
         Log.d("mediaPlayer", "media player started")
@@ -41,6 +41,11 @@ class Helper {
             mediaPlayer?.release()
             mediaPlayer = null
             Log.d("mediaPlayer", "media player released")
+        }
+        mediaPlayer?.setOnErrorListener { mp, what, extra ->
+            mp.reset()
+            Log.d("mediaPlayer", "error $what $extra")
+            return@setOnErrorListener true
         }
     }
 }
