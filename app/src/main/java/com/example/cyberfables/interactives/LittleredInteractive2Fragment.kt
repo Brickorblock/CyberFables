@@ -18,11 +18,14 @@ import com.bumptech.glide.Glide
 import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
+import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 import kotlinx.android.synthetic.main.fragment_littlered_interactive1.*
 import kotlinx.android.synthetic.main.fragment_littlered_interactive1.hitboxes
+import kotlinx.android.synthetic.main.fragment_littlered_interactive1.view.*
 import kotlinx.android.synthetic.main.fragment_littlered_interactive2.*
 import kotlinx.android.synthetic.main.fragment_littlered_interactive2.view.*
+import kotlinx.android.synthetic.main.fragment_littlered_result1.view.*
 import kotlinx.android.synthetic.main.fragment_storypage.*
 import kotlinx.android.synthetic.main.fragment_storypage.view.*
 import kotlinx.android.synthetic.main.fragment_storypage.view.pageImage
@@ -34,13 +37,15 @@ class LittleredInteractive2Fragment : Fragment() {
         val KEY = "LittleredInteractive2Fragment"
     }
 
+    private lateinit var pageImage: ImageView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_littlered_interactive2, container, false)
-
+        pageImage = root.pageImage
         return root
     }
 
@@ -54,12 +59,11 @@ class LittleredInteractive2Fragment : Fragment() {
             .dontAnimate()
             .thumbnail(0.1f)
             .into(hitboxes)
-        val image: ImageView = root.pageImage
-        Glide.with(image.context)
+        Glide.with(pageImage.context)
             .load(R.drawable.littlered_6_decision2)
             .dontAnimate()
             .thumbnail(0.1f)
-            .into(image)
+            .into(pageImage)
 
 
         // handles custom hitbox touch zones on a static image.
