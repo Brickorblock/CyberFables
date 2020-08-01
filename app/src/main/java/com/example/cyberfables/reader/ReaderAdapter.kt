@@ -47,6 +47,7 @@ class ReaderAdapter(
             .into(holder.itemView.pageImage)
 
         // if user stays on the 1st page for too long, animate a page swipe icon hint
+/*
         if (position == 0) {
             holder.itemView.swipe_icon.alpha = 1F
             // play animations
@@ -55,6 +56,7 @@ class ReaderAdapter(
 
             holder.itemView.swipe_icon.animation = anim
         }
+*/
 
         //launch interactive fragment when reached - skip this if there are no interactives in fable
         if (!fable.interactivePages.isNullOrEmpty() &&
