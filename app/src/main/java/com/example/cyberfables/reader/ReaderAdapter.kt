@@ -1,6 +1,7 @@
 package com.example.cyberfables.reader
 
 import android.media.MediaPlayer
+import android.media.SoundPool
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,12 @@ import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_storypage.view.*
+import kotlinx.coroutines.withContext
 
 class ReaderAdapter(
-    val fable: Fable
+    val fable: Fable,
+    private val soundMap: HashMap<Int, Int>,
+    private val soundPool: SoundPool
 
 ) : RecyclerView.Adapter<ReaderAdapter.ReaderViewHolder>() {
     private lateinit var mRecyclerView: RecyclerView
@@ -48,8 +52,7 @@ class ReaderAdapter(
             .into(holder.itemView.pageImage)
 
         if(fable.sounds.containsKey(prev)){
-            val mediaPlayer = MediaPlayer.create(holder.itemView.context, fable.sounds.get(prev)!!)
-            mediaPlayer?.start()
+            soundPool.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
         }
 
 
@@ -60,9 +63,7 @@ class ReaderAdapter(
             // play animations
             val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_left);
             anim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
-
             holder.itemView.swipe_icon.animation = anim
-
         }
 
         //launch interactive fragment when reached - skip this if there are no interactives in fable

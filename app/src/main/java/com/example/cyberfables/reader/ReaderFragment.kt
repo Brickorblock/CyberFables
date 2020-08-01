@@ -1,7 +1,10 @@
 package com.example.cyberfables.reader
 
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +16,12 @@ import com.example.cyberfables.R
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_reader.view.*
 
+
 class ReaderFragment : Fragment() {
 
     private val TAG = "ReaderFragment"
+
+    private lateinit var soundPool: SoundPool
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
@@ -27,17 +33,49 @@ class ReaderFragment : Fragment() {
         //grab fable from bundle args (from BookDetailFragment)
         val fable = (requireArguments().get(BookDetailFragment.KEY) as Fable)
 
+        //get soundMap
+        val soundMap = getSoundPool(fable)
+
         // Instantiate a ViewPager2 and a PagerAdapter.
         val viewPager = root.readerPager
         viewPager.setPageTransformer(DepthPageTransformer())
         // The pager adapter, which provides the pages to the view pager widget.
-        val readerAdapter = ReaderAdapter(fable)
-        viewPager.adapter = readerAdapter
+        viewPager.adapter = ReaderAdapter(fable, soundMap, soundPool)
         //set the page the viewpager should show
         viewPager.setCurrentItem(fable.pageToOpenOn, false)
 
+
+        //play music for first page
+        val firstPage = fable.pages[fable.pageToOpenOn]
+        soundPool.setOnLoadCompleteListener { soundPool, sampleId, status ->
+            if (fable.sounds.containsKey(firstPage)){
+                soundPool!!.play(soundMap.get(firstPage)!!, 1F, 1F, 1, 0, 1F)
+            };
+        }
         // Inflate the layout for this fragment
         return root
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun getSoundPool(fable: Fable): HashMap<Int, Int> {
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_GAME)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(1)
+            .setAudioAttributes(audioAttributes)
+            .build()
+        val soundMap = HashMap<Int,Int>()
+        for ((key, value) in fable.sounds) {
+            soundMap.put(key, soundPool.load(context,value,1))
+        }
+        return soundMap
+    }
+
+    override fun onDestroyView() {
+        soundPool.release()
+        super.onDestroyView()
     }
 
     // handles custom pagination animation

@@ -69,8 +69,7 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.tortoise_8 to R.raw.tortoise_phone_chatter,
                 R.drawable.tortoise_9 to R.raw.tortoise_dingdong,
                 R.drawable.tortoise_10 to R.raw.tortoise_realisation_ah2,
-                R.drawable.tortoise_12 to R.raw.tortoise_yay,
-                R.drawable.tortoise_13 to R.raw.tortoise_end_song
+                R.drawable.tortoise_12 to R.raw.tortoise_yay
             )
         )
 
@@ -106,8 +105,20 @@ class MainActivity : AppCompatActivity() {
             mutableListOf(
                 R.id.action_readerFragment_to_littleredInteractive1Fragment,
                 R.id.action_readerFragment_to_littleredInteractive2Fragment),
-            hashMapOf<Int, Int>()
-
+            hashMapOf<Int, Int>(
+                R.drawable.littlered_1 to  R.raw.lilred_morning_birds,
+                R.drawable.littlered_2 to R.raw.lilred_right_answer_sound_effect,
+                R.drawable.littlered_3 to R.raw.lilred_hmm1,
+                R.drawable.littlered_4 to R.raw.lilred_notification,
+                R.drawable.littlered_5 to R.raw.lilred_notification,
+                R.drawable.littlered_6 to R.raw.lilred_gasp,
+                R.drawable.littlered_7 to R.raw.lilred_owl_hoot,
+                R.drawable.littlered_8_goodend to R.raw.lilred_gasp,
+                R.drawable.littlered_8_badend to R.raw.lilred_gasp,
+                R.drawable.littlered_9 to R.raw.lilred_error,
+                R.drawable.littlered_10_badend to  R.raw.hansel_whimper,
+                R.drawable.littlered_12_converged to R.raw.lilred_hmm1
+            )
         )
 
         val fable3 = Fable(
@@ -144,7 +155,23 @@ class MainActivity : AppCompatActivity() {
             ),
             //empty lists = no interactive content
             mutableListOf(), mutableListOf(),
-            hashMapOf<Int, Int>()
+            hashMapOf<Int, Int>(
+                R.drawable.hansel_1 to  R.raw.hansel_humming,
+                R.drawable.hansel_2 to R.raw.hansel_magic_ringing,
+                R.drawable.hansel_5 to R.raw.hansel_footsteps,
+                R.drawable.hansel_6 to R.raw.hansel_hmm1,
+                R.drawable.hansel_7 to R.raw.hansel_mock_laugh,
+                R.drawable.hansel_9 to R.raw.hansel_running_grass,
+                R.drawable.hansel_10 to R.raw.hansel_notification,
+                R.drawable.hansel_11 to R.raw.hansel_footsteps,
+                R.drawable.hansel_12 to R.raw.hansel_notification_sad,
+                R.drawable.hansel_13 to R.raw.hansel_hmm1,
+                R.drawable.hansel_14 to R.raw.hansel_footsteps,
+                R.drawable.hansel_15 to  R.raw.hansel_notification,
+                R.drawable.hansel_19 to R.raw.hansel_footsteps,
+                R.drawable.hansel_20 to R.raw.hansel_gasp,
+                R.drawable.hansel_23 to R.raw.hansel_end_jingle
+                )
         )
 
         fables.add(fable1)

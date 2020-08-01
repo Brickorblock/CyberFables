@@ -1,5 +1,6 @@
 package com.example.cyberfables.interactives
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,13 +45,16 @@ class LittleredResult2Fragment() : Fragment() {
         fable = db.fableDao().getFable(1)
 
         var image: Int
+        var sound: Int
 
         if (correctChoice) {
             image = R.drawable.littlered_6_decision2_correct
+            sound = R.raw.lilred_right_answer_sound_effect
             fable.pages.remove(R.drawable.littlered_8_badend)
             fable.pages.remove(R.drawable.littlered_10_badend)
         } else {
             image = R.drawable.littlered_6_decision2_incorrect
+            sound = R.raw.lilred_incorrect_sound_effect
             fable.pages.remove(R.drawable.littlered_8_goodend)
             fable.pages.remove(R.drawable.littlered_10_goodend)
         }
@@ -60,6 +64,9 @@ class LittleredResult2Fragment() : Fragment() {
             .dontAnimate()
             .thumbnail(0.1f)
             .into(pageImage)
+
+        val mediaPlayer = MediaPlayer.create(pageImage.context, sound )
+        mediaPlayer?.start()
 
         //remove all the interactive minigames since this is the last one
         for (page in fable.interactivePages!!) {

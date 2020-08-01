@@ -1,5 +1,6 @@
 package com.example.cyberfables.interactives
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ class LittleredResult1Fragment() : Fragment() {
         // grab args
         correctChoice =
             requireArguments().getBoolean(LittleredInteractive1Fragment.KEY)
+
     }
 
     override fun onCreateView(
@@ -40,11 +42,13 @@ class LittleredResult1Fragment() : Fragment() {
         nextButton = root.nextButton
 
         var image: Int
-
+        var sound: Int
         if (correctChoice) {
             image = R.drawable.littlered_3_decision1_correct
+            sound = R.raw.lilred_right_answer_sound_effect
         } else {
             image = R.drawable.littlered_3_decision1_incorrect
+            sound = R.raw.lilred_incorrect_sound_effect
         }
 
         Glide.with(pageImage.context)
@@ -52,6 +56,9 @@ class LittleredResult1Fragment() : Fragment() {
             .dontAnimate()
             .thumbnail(0.1f)
             .into(pageImage)
+
+        val mediaPlayer = MediaPlayer.create(pageImage.context, sound )
+        mediaPlayer?.start()
 
 
         // get the littleRed fable
@@ -75,6 +82,7 @@ class LittleredResult1Fragment() : Fragment() {
         val buttonAnim = AnimationUtils.loadAnimation(context, R.anim.fade_in_slow);
         buttonAnim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
         nextButton.animation = buttonAnim
+
         //switch back to the reader
         var fableContinueBundle = bundleOf(BookDetailFragment.KEY to fable)
 

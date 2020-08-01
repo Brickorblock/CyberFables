@@ -1,6 +1,7 @@
 package com.example.cyberfables.interactives
 
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.cyberfables.R
 import com.example.cyberfables.entities.PasswordMinigame
 import com.example.cyberfables.entities.PasswordQuestion
 import kotlinx.android.synthetic.main.fragment_tortoise_answer.*
+import kotlinx.android.synthetic.main.fragment_tortoise_gameover.*
 
 class TortoiseAnswerFragment : Fragment() {
 
@@ -43,15 +45,22 @@ class TortoiseAnswerFragment : Fragment() {
 
         passwordText.text = currQ.password
 
+        var sound: Int
+
         if (userCorrect) {
             resultText.text = "Correct - Good Job!"
+            sound = R.raw.tortoise_right_answer_sound_effect
             resultText.setTextColor(resources.getColor(R.color.colorGreen))
             hareImage.setImageResource(R.drawable.hare_happy)
         } else {
             resultText.text = "Incorrect - Good Try!"
+            sound = R.raw.tortoise_incorrect_sound_effect
             resultText.setTextColor(resources.getColor(R.color.colorRed))
             hareImage.setImageResource(R.drawable.hare_sad)
         }
+
+        val mediaPlayer = MediaPlayer.create(hareImage.context, sound )
+        mediaPlayer?.start()
 
         setAnswersText()
 

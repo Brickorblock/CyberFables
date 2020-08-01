@@ -1,5 +1,6 @@
 package com.example.cyberfables.interactives
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,9 @@ class TortoiseInteractiveFragment : Fragment() {
             .dontAnimate()
             .thumbnail(0.1f)
             .into(image)
+
+        val mediaPlayer = MediaPlayer.create(image.context, R.raw.tortoise_end_song)
+        mediaPlayer?.start()
 
         nextButton.setOnClickListener {
 

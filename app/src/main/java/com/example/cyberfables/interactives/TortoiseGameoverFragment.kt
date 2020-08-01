@@ -1,5 +1,6 @@
 package com.example.cyberfables.interactives
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,15 +32,22 @@ class TortoiseGameoverFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var sound: Int
+
         if (gameInstance.lives > 0) {
             gameoverText.text = "Well Done!"
+            sound = R.raw.tortoise_win
             tortoiseImage.setImageResource(R.drawable.tortoise_happy)
             scoreText.text = "You Got ${gameInstance.score} / ${gameInstance.totalSize} Correct!"
         } else {
             gameoverText.text = "Game Over!"
+            sound = R.raw.tortoise_game_over
             tortoiseImage.setImageResource(R.drawable.tortoise_sad)
             scoreText.text = "You Ran Out of Lives! (You Got ${gameInstance.score} Correct)"
         }
+
+        val mediaPlayer = MediaPlayer.create(tortoiseImage.context, sound )
+        mediaPlayer?.start()
 
         backButton.setOnClickListener {
             (context as MainActivity).navController.popBackStack()
