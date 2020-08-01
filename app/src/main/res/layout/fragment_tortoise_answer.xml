@@ -140,7 +140,7 @@
         app:layout_constraintEnd_toEndOf="@+id/hareImage"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/hareImage"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/blurbText"
         app:layout_constraintVertical_bias="0.243" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

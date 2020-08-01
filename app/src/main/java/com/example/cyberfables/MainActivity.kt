@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         val fable1 = Fable(
             0,
             "Safe & Secure Wins the Race!",
-            "[PLACEHOLDER] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec lorem augue. Donec finibus interdum laoreet. Phasellus lorem felis, consequat vitae finibus eget, tempor ut libero. Suspendisse quis orci tellus. ",
+            "Join the Tortoise and his best friend the Hare as they discover the challenges of owning a social media account by learning the importance of a strong password.",
+            "Passwords, Online Security",
             R.drawable.fable1_cover,
             R.drawable.fable1_icon,
             arrayListOf(
@@ -62,7 +63,8 @@ class MainActivity : AppCompatActivity() {
         val fable2 = Fable(
             1,
             "Little Red & the Cyber Wolf",
-            "[PLACEHOLDER] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec lorem augue. Donec finibus interdum laoreet. Phasellus lorem felis, consequat vitae finibus eget, tempor ut libero. Suspendisse quis orci tellus. ",
+            "Follow Little Red Riding Hood’s journey into owning her first Facebook account, where she is tricked into trusting someone who isn't who they say they are...",
+            "Phishing, Digital Stranger Danger",
             R.drawable.fable2_cover,
             R.drawable.fable2_icon,
             // this is the first "chapter" - up to the first interactive fragment
@@ -83,7 +85,8 @@ class MainActivity : AppCompatActivity() {
         val fable3 = Fable(
             2,
             "Hansel & Gretel's Digital Footprint",
-            "[PLACEHOLDER] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec lorem augue. Donec finibus interdum laoreet. Phasellus lorem felis, consequat vitae finibus eget, tempor ut libero. Suspendisse quis orci tellus. ",
+            "Explore a magical forest called \"The Internet\" with Hansel & Gretel, where they learn how everything they do online leaves a footprint that anyone can follow.",
+            "Digital Footprints, Digital Privacy",
             R.drawable.fable3_cover,
             R.drawable.fable3_icon,
             arrayListOf(

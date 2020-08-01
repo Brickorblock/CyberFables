@@ -13,6 +13,7 @@ import kotlinx.android.parcel.Parcelize
     var id: Int,
     var title: String,
     var blurb: String,
+    var teaches: String,
     // cover should be 600 * 900
     var coverImg: Int,
     // icon should be square aspect (pref 100 * 100)

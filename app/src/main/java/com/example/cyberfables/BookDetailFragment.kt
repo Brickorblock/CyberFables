@@ -30,17 +30,19 @@ class BookDetailFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var root = inflater.inflate(R.layout.fragment_book_detail, container, false)
-        if (fable != null) {
-            val title: TextView = root.textView
-            title.text = fable!!.title
-            val blurb: TextView = root.textView2
-            blurb.text = fable!!.blurb
-            val cover: ImageView = root.imageView
-            cover.setImageResource(fable!!.coverImg)
-        }
+        return inflater.inflate(R.layout.fragment_book_detail, container, false)
+    }
 
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (fable != null) {
+            titleText.text = fable!!.title
+            blurbText.text = fable!!.blurb
+            teachesText.text = fable!!.teaches
+
+            coverImage.setImageResource(fable!!.coverImg)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

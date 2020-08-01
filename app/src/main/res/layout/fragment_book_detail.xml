@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/coverImage"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -34,11 +34,11 @@
         android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/coverImage"
+        app:layout_constraintTop_toTopOf="@+id/coverImage" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/blurbText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -46,12 +46,12 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:lineSpacingMultiplier="1.3"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit tempor nisl, molestie condimentum mauris semper non. Aenean est leo, efficitur nec sodales eget, tristique vel sapien. Nullam lobortis justo nec risus ornare, vitae ultrices nulla blandit. Nunc a felis quis lacus condimentum porttitor quis ut leo."
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit tempor nisl, molestie condimentum mauris semper non. Aenean est leo, efficitur nec sodales eget, tristique vel sapien. Nullam lobortis justo nec risus ornare, vitae ultrices nulla blandit. "
         android:textAppearance="@style/body"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/coverImage"
+        app:layout_constraintTop_toBottomOf="@+id/teachesText"
         app:layout_constraintVertical_bias="0.08" />
 
     <Button
@@ -67,7 +67,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintStart_toEndOf="@+id/coverImage"
+        app:layout_constraintTop_toBottomOf="@+id/blurbText"
+        app:layout_constraintVertical_bias="0.39" />
+
+    <TextView
+        android:id="@+id/teachesText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Teaches: Passwords"
+        android:textAppearance="@style/bodyPrimaryStrong"
+        app:layout_constraintEnd_toEndOf="@+id/titleText"
+        app:layout_constraintStart_toStartOf="@+id/titleText"
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
