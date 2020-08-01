@@ -69,11 +69,23 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.littlered_2,
                 R.drawable.littlered_3,
                 R.drawable.littlered_3_decision1,
-                R.drawable.littlered_4
-
-            ),
-            mutableListOf(R.drawable.littlered_3_decision1),
-            mutableListOf(R.id.action_readerFragment_to_littleredInteractive1Fragment)
+                R.drawable.littlered_4,
+                R.drawable.littlered_5,
+                R.drawable.littlered_6,
+                R.drawable.littlered_6_decision2,
+                R.drawable.littlered_7,
+                R.drawable.littlered_8_badend,
+                R.drawable.littlered_8_goodend,
+                R.drawable.littlered_9,
+                R.drawable.littlered_10_badend,
+                R.drawable.littlered_10_goodend,
+                R.drawable.littlered_11_converged,
+                R.drawable.littlered_12_converged
+                ),
+            mutableListOf(R.drawable.littlered_3_decision1, R.drawable.littlered_6_decision2),
+            mutableListOf(
+                R.id.action_readerFragment_to_littleredInteractive1Fragment,
+                R.id.action_readerFragment_to_littleredInteractive2Fragment)
         )
 
         val fable3 = Fable(

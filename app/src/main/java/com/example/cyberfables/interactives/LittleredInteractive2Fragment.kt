@@ -9,19 +9,29 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
+import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 import kotlinx.android.synthetic.main.fragment_littlered_interactive1.*
+import kotlinx.android.synthetic.main.fragment_littlered_interactive1.hitboxes
+import kotlinx.android.synthetic.main.fragment_littlered_interactive2.*
+import kotlinx.android.synthetic.main.fragment_littlered_interactive2.view.*
+import kotlinx.android.synthetic.main.fragment_storypage.*
+import kotlinx.android.synthetic.main.fragment_storypage.view.*
+import kotlinx.android.synthetic.main.fragment_storypage.view.pageImage
 
 
-class LittleredInteractive1Fragment : Fragment() {
+class LittleredInteractive2Fragment : Fragment() {
 
     companion object {
-        val KEY = "LittleredInteractive1Fragment"
+        val KEY = "LittleredInteractive2Fragment"
     }
 
     override fun onCreateView(
@@ -29,7 +39,7 @@ class LittleredInteractive1Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_littlered_interactive1, container, false)
+        val root = inflater.inflate(R.layout.fragment_littlered_interactive2, container, false)
 
         return root
     }
@@ -37,6 +47,20 @@ class LittleredInteractive1Fragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        Glide.with(hitboxes.context)
+            .load(R.drawable.littlered_6_decision2_hitboxes)
+            .dontAnimate()
+            .thumbnail(0.1f)
+            .into(hitboxes)
+        val image: ImageView = root.pageImage
+        Glide.with(image.context)
+            .load(R.drawable.littlered_6_decision2)
+            .dontAnimate()
+            .thumbnail(0.1f)
+            .into(image)
+
 
         // handles custom hitbox touch zones on a static image.
         // See Helper.getHitboxColour() for more details
@@ -87,7 +111,7 @@ class LittleredInteractive1Fragment : Fragment() {
             Log.d("LittleredInteractive", "bundle = $choiceBundle")
 
             (context as MainActivity).navController.navigate(
-                R.id.action_littleredInteractive1Fragment_to_littleredResult1Fragment,
+                R.id.action_littleredInteractive2Fragment_to_littleredResult2Fragment,
                 choiceBundle
             )
         }

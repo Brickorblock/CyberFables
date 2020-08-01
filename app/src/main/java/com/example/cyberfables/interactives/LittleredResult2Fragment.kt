@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.cyberfables.BookDetailFragment
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_littlered_interactive1.*
 import kotlinx.android.synthetic.main.fragment_littlered_result1.*
 import kotlinx.android.synthetic.main.fragment_littlered_result1.view.*
 
-class LittleredResult1Fragment() : Fragment() {
+class LittleredResult2Fragment() : Fragment() {
 
     private var correctChoice: Boolean = false
     private lateinit var nextButton: Button
@@ -29,7 +30,7 @@ class LittleredResult1Fragment() : Fragment() {
 
         // grab args
         correctChoice =
-            requireArguments().getBoolean(LittleredInteractive1Fragment.KEY)
+            requireArguments().getBoolean(LittleredInteractive2Fragment.KEY)
     }
 
     override fun onCreateView(
@@ -41,21 +42,36 @@ class LittleredResult1Fragment() : Fragment() {
         val pageImage = root.pageImage
         nextButton = root.nextButton
 
-        if (correctChoice) {
-            pageImage.setImageResource(R.drawable.littlered_3_decision1_correct)
-        } else {
-            pageImage.setImageResource(R.drawable.littlered_3_decision1_incorrect)
-        }
-
         // get the littleRed fable
         val db = AppDatabase.getDatabase(requireContext())
         fable = db.fableDao().getFable(1)
+
+        var image: Int
+
+        if (correctChoice) {
+            image = R.drawable.littlered_6_decision2_correct
+            fable.pages.remove(R.drawable.littlered_8_badend)
+            fable.pages.remove(R.drawable.littlered_10_badend)
+        } else {
+            image = R.drawable.littlered_6_decision2_incorrect
+            fable.pages.remove(R.drawable.littlered_8_goodend)
+            fable.pages.remove(R.drawable.littlered_10_goodend)
+        }
+
+        Glide.with(pageImage.context)
+            .load(image)
+            .dontAnimate()
+            .thumbnail(0.1f)
+            .into(pageImage)
+
         //change the page to open to the one after the minigame
-        fable.pageToOpenOn = fable.pages.indexOf(fable.interactivePages?.get(0))
-        //remove the interactive minigame we just used
-        fable.interactivePages?.removeAt(0)
-        fable.pages.removeAt(fable.pageToOpenOn)
-        fable.interactiveFragmentsNav?.removeAt(0)
+        fable.pageToOpenOn = fable.pages.indexOf(fable.interactivePages?.get(1))
+        //remove all the interactive minigames since this is the last one
+        for (page in fable.interactivePages!!) {
+            fable.pages.remove(page)
+        }
+        fable.interactivePages?.clear()
+        fable.interactiveFragmentsNav?.clear()
 
         // Inflate the layout for this fragment
         return root
@@ -74,7 +90,7 @@ class LittleredResult1Fragment() : Fragment() {
         // handle switching fragments on button press
         nextButton.setOnClickListener {
             //pass thru Fable & navigate
-            (context as MainActivity).navController.navigate(R.id.action_littleredResult1Fragment_to_readerFragment, fableContinueBundle)
+            (context as MainActivity).navController.navigate(R.id.action_littleredResult2Fragment_to_readerFragment, fableContinueBundle)
         }
 
 
