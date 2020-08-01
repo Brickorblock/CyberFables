@@ -44,7 +44,7 @@ class ReaderAdapter(
 
         Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
         //only load an image if the page is NOT interactive
-        if (!(!fable.pages.isNullOrEmpty() and fable.interactivePages!!.contains(curr))) {
+        if (fable.interactivePages.isNullOrEmpty() or !(fable.interactivePages!!.contains(curr))) {
             Glide.with(holder.itemView.context)
                 .load(curr)
                 .dontAnimate()
@@ -52,6 +52,7 @@ class ReaderAdapter(
                 .into(holder.itemView.pageImage)
         }
 
+        //sounds for all items except first and last
         if(fable.sounds.containsKey(prev)){
             soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
         }

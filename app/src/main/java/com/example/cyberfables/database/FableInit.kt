@@ -28,7 +28,7 @@ class FableInit {
                 R.drawable.tortoise_11,
                 R.drawable.tortoise_12,
                 R.drawable.tortoise_13,
-                R.drawable.tortoise_1
+                R.drawable.tortoise_13
             ),
             //empty lists = no interactive content
             mutableListOf(R.drawable.tortoise_13),

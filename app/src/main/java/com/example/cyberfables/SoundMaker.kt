@@ -12,31 +12,6 @@ object SoundMaker {
     var soundMap: HashMap<Int, Int> = hashMapOf()
     var context: Context? = null
 
-
-    //media player to play 1 off media files in the interactive activities
-    fun playSound(fragContext: Context, soundRes: Int) {
-
-        if(context == null) context = (fragContext as MainActivity).applicationContext
-
-        //if soundmap has the sound, play it
-        if (soundMap.containsKey(soundRes)) playSoundNoLoad(soundMap[soundRes]!!)
-
-        //if it doesnt, load it then play it
-        else playSoundOnLoad(soundRes)
-    }
-
-
-    private fun playSoundOnLoad(soundRes: Int) {
-        soundMap[soundRes] = soundPool!!.load(context,soundRes,1)
-        soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
-            playSoundNoLoad(soundMap[soundRes]!!)
-        }
-    }
-
-    private fun playSoundNoLoad( soundID: Int) {
-        soundPool.play(soundID, 1F, 1F, 1, 0, 1F)
-    }
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun initSoundPool(): SoundPool {
         val audioAttributes = AudioAttributes.Builder()
@@ -48,4 +23,36 @@ object SoundMaker {
             .setAudioAttributes(audioAttributes)
             .build()
     }
+
+    //media player to play 1 off media files in the interactive activities
+    fun playSound(fragContext: Context, soundRes: Int, loop: Int = 0) {
+        //if context is null, set context
+        if(context == null) context = (fragContext as MainActivity).applicationContext
+        //play the sound
+        player(soundRes,loop)
+    }
+
+    private fun player(soundRes: Int, loop: Int){
+        //if soundmap has the sound, play it
+        if (soundMap.containsKey(soundRes)) {
+            playSoundNoLoad(soundMap[soundRes]!!, loop)
+        }
+        //if it doesnt
+        else {
+            //load it
+            val soundID = soundPool!!.load(context,soundRes,1)
+            //save it in the hashmap
+            soundMap[soundRes] = soundID
+            //wait for it to finish loading, then play it
+            soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
+                playSoundNoLoad(soundID, loop)
+            }
+        }
+    }
+
+
+    private fun playSoundNoLoad( soundID: Int, loop: Int){
+        soundPool.play(soundID, 1F, 1F, 1, loop, 1F)
+    }
+
 }
