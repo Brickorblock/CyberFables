@@ -5,7 +5,7 @@ import androidx.room.TypeConverter
 class Converters {
 
     @TypeConverter
-    fun fromStringtoList(stringListInt: String): List<Int> {
+    fun fromStringToList(stringListInt: String): List<Int> {
         val array = stringListInt.split(",").map { it }
         val intList = mutableListOf<Int>()
         for(s in array) {
@@ -17,31 +17,29 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromListtoString(intList: List<Int>): String {
+    fun fromListToString(intList: List<Int>): String {
         return intList.joinToString(separator = ",")
     }
 
     @TypeConverter
-    fun fromHashMaptoString(hashMap: HashMap<Int,Int>): String{
-        var keys = ArrayList(hashMap.keys)
-        var values = ArrayList(hashMap.values)
-        var stringKeys = keys.joinToString(separator = ",")
-        var stringValues = values.joinToString(separator = ",")
+    fun fromHashMapToString(hashMap: HashMap<Int,Int>): String{
+        val keys = ArrayList(hashMap.keys)
+        val values = ArrayList(hashMap.values)
+        val stringKeys = keys.joinToString(separator = ",")
+        val stringValues = values.joinToString(separator = ",")
         return "$stringKeys|$stringValues"
     }
 
     @TypeConverter
-    fun fromStringtoHashMap(hashString: String): HashMap<Int,Int>{
+    fun fromStringToHashMap(hashString: String): HashMap<Int,Int>{
         val array = hashString.split("|").map { it }
         val arrayKeys = array[0].split(",").map {it}
         val arrayValues = array[1].split(",").map {it}
         val map = HashMap<Int,Int>()
-        var i = 0
-        for(s in arrayKeys) {
+        for((i, s) in arrayKeys.withIndex()) {
             if (s.isNotEmpty()) {
-                map.put(s.toInt(), arrayValues[i].toInt())
+                map[s.toInt()] = arrayValues[i].toInt()
             }
-            i++
         }
         return map
     }

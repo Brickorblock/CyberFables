@@ -4,7 +4,6 @@ import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ class ReaderFragment : Fragment() {
 
     private val TAG = "ReaderFragment"
 
-    private lateinit var soundPool: SoundPool
+    private var soundPool: SoundPool? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
@@ -47,10 +46,10 @@ class ReaderFragment : Fragment() {
 
         //play music for first page
         val firstPage = fable.pages[fable.pageToOpenOn]
-        soundPool.setOnLoadCompleteListener { soundPool, sampleId, status ->
+        soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
             if (fable.sounds.containsKey(firstPage)){
-                soundPool!!.play(soundMap.get(firstPage)!!, 1F, 1F, 1, 0, 1F)
-            };
+                soundPool!!.play(soundMap[firstPage]!!, 1F, 1F, 1, 0, 1F)
+            }
         }
         // Inflate the layout for this fragment
         return root
@@ -68,13 +67,14 @@ class ReaderFragment : Fragment() {
             .build()
         val soundMap = HashMap<Int,Int>()
         for ((key, value) in fable.sounds) {
-            soundMap.put(key, soundPool.load(context,value,1))
+            soundMap[key] = soundPool!!.load(context,value,1)
         }
         return soundMap
     }
 
     override fun onDestroyView() {
-        soundPool.release()
+        soundPool?.release()
+        soundPool = null
         super.onDestroyView()
     }
 

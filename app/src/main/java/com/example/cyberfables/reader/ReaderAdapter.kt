@@ -1,7 +1,5 @@
 package com.example.cyberfables.reader
 
-import android.graphics.drawable.ColorDrawable
-import android.media.MediaPlayer
 import android.media.SoundPool
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,12 +12,11 @@ import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_storypage.view.*
-import kotlinx.coroutines.withContext
 
 class ReaderAdapter(
     val fable: Fable,
     private val soundMap: HashMap<Int, Int>,
-    private val soundPool: SoundPool
+    private val soundPool: SoundPool?
 
 ) : RecyclerView.Adapter<ReaderAdapter.ReaderViewHolder>() {
     private lateinit var mRecyclerView: RecyclerView
@@ -56,7 +53,7 @@ class ReaderAdapter(
         }
 
         if(fable.sounds.containsKey(prev)){
-            soundPool.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
+            soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
         }
 
 

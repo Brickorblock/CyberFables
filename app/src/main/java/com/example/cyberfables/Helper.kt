@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.media.MediaPlayer
+import android.util.Log
 import android.widget.ImageView
 
 class Helper {
@@ -33,12 +34,13 @@ class Helper {
 
     //media player to play 1 off media files in the interactive activities
     fun playSound(context: Context, sound: Int){
-        val mediaPlayer = MediaPlayer.create(context, sound )
-        mediaPlayer.setOnPreparedListener {
-            mediaPlayer.start()
-        }
-        mediaPlayer.setOnCompletionListener {
-            mediaPlayer.release()
+        var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, sound )
+        mediaPlayer?.start()
+        Log.d("mediaPlayer", "media player started")
+        mediaPlayer?.setOnCompletionListener {
+            mediaPlayer?.release()
+            mediaPlayer = null
+            Log.d("mediaPlayer", "media player released")
         }
     }
 }
