@@ -57,7 +57,20 @@ class MainActivity : AppCompatActivity() {
             ),
             //empty lists = no interactive content
             mutableListOf(R.drawable.tortoise_13),
-            mutableListOf(R.id.action_readerFragment_to_tortoiseInteractiveFragment)
+            mutableListOf(R.id.action_readerFragment_to_tortoiseInteractiveFragment),
+            hashMapOf<Int, Int>(
+                R.drawable.tortoise_1 to  R.raw.tortoise_snore,
+                R.drawable.tortoise_2 to R.raw.tortoise_idea,
+                R.drawable.tortoise_3 to R.raw.tortoise_ding_and_noise,
+                R.drawable.tortoise_4 to R.raw.tortoise_disappointed_noise1,
+                R.drawable.tortoise_6 to R.raw.tortoise_realisation_ah,
+                R.drawable.tortoise_7 to R.raw.tortoise_ring_phone,
+                R.drawable.tortoise_8 to R.raw.tortoise_phone_chatter,
+                R.drawable.tortoise_9 to R.raw.tortoise_dingdong,
+                R.drawable.tortoise_10 to R.raw.tortoise_realisation_ah2,
+                R.drawable.tortoise_12 to R.raw.tortoise_yay,
+                R.drawable.tortoise_13 to R.raw.tortoise_end_song
+            )
         )
 
         val fable2 = Fable(
@@ -91,7 +104,9 @@ class MainActivity : AppCompatActivity() {
             mutableListOf(R.drawable.littlered_3_decision1, R.drawable.littlered_6_decision2),
             mutableListOf(
                 R.id.action_readerFragment_to_littleredInteractive1Fragment,
-                R.id.action_readerFragment_to_littleredInteractive2Fragment)
+                R.id.action_readerFragment_to_littleredInteractive2Fragment),
+            hashMapOf<Int, Int>()
+
         )
 
         val fable3 = Fable(
@@ -127,7 +142,8 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.hansel_23
             ),
             //empty lists = no interactive content
-            mutableListOf(), mutableListOf()
+            mutableListOf(), mutableListOf(),
+            hashMapOf<Int, Int>()
         )
 
         fables.add(fable1)
