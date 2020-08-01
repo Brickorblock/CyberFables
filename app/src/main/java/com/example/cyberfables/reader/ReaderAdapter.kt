@@ -1,5 +1,6 @@
 package com.example.cyberfables.reader
 
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.media.SoundPool
 import android.util.Log
@@ -45,11 +46,14 @@ class ReaderAdapter(
         }
 
         Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
-        Glide.with(holder.itemView.context)
-            .load(curr)
-            .dontAnimate()
-            .thumbnail(0.1f)
-            .into(holder.itemView.pageImage)
+        //only load an image if the page is NOT interactive
+        if (!(!fable.pages.isNullOrEmpty() and fable.interactivePages!!.contains(curr))) {
+            Glide.with(holder.itemView.context)
+                .load(curr)
+                .dontAnimate()
+                .thumbnail(0.1f)
+                .into(holder.itemView.pageImage)
+        }
 
         if(fable.sounds.containsKey(prev)){
             soundPool.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
