@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
-import kotlinx.android.synthetic.main.fragment_littlered_interactive2.*
+import kotlinx.android.synthetic.main.fragment_littlered_interactive.*
 import kotlinx.android.synthetic.main.fragment_storypage.view.*
 
 
@@ -28,15 +28,13 @@ class LittleredInteractive2Fragment : Fragment() {
         val KEY = "LittleredInteractive2Fragment"
     }
 
-    private lateinit var pageImage: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_littlered_interactive2, container, false)
-        pageImage = root.pageImage
+        val root = inflater.inflate(R.layout.fragment_littlered_interactive, container, false)
         return root
     }
 
@@ -51,15 +49,15 @@ class LittleredInteractive2Fragment : Fragment() {
             .thumbnail(0.1f)
             .into(pageImage)
 
-        Glide.with(hitbox.context)
+        Glide.with(hitboxes.context)
             .load(R.drawable.littlered_6_decision2_hitboxes)
-            .into(hitbox)
+            .into(hitboxes)
 
 
 
         // handles custom hitbox touch zones on a static image.
         // See Helper.getHitboxColour() for more details
-        hitbox.setOnTouchListener(OnTouchListener { v, ev ->
+        hitboxes.setOnTouchListener(OnTouchListener { v, ev ->
             val action = ev.action
             val evX = ev.getX().toInt()
             val evY = ev.getY().toInt()
@@ -67,7 +65,7 @@ class LittleredInteractive2Fragment : Fragment() {
             Log.d("LittleredInteractive", "evX = $evX, evY = $evY")
 
             if (action == MotionEvent.ACTION_UP) {
-                val pixelColour: Int = Helper().getHitboxColour(hitbox, evX, evY)
+                val pixelColour: Int = Helper().getHitboxColour(hitboxes, evX, evY)
                 Log.d("LittleredInteractive", "pixelColour = $pixelColour")
 
                 determineChoice(pixelColour)

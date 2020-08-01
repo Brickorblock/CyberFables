@@ -12,8 +12,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cyberfables.database.AppDatabase
 import com.example.cyberfables.entities.Fable
+import kotlinx.android.synthetic.main.fragment_book_detail.*
 
 class BookshelfFragment: Fragment() {
     private val TAG = "BookshelfFragment"
@@ -100,7 +102,10 @@ class BookshelfFragment: Fragment() {
             }
 
             val book = dataset[position]
-            holder.iconImage.setImageResource(dataset[position].iconImg)
+            Glide.with(holder.iconImage.context)
+                .load(book.iconImg)
+                .dontAnimate()
+                .into(holder.iconImage)
             holder.itemView.setOnClickListener {
                 // update positions & dataset (for itemview highlighting), then switch fragment
                 selectedPosition = position

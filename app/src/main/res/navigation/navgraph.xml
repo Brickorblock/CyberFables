@@ -52,7 +52,7 @@
         android:id="@+id/littleredInteractive1Fragment"
         android:name="com.example.cyberfables.interactives.LittleredInteractive1Fragment"
         android:label="fragment_littlered_interactive1"
-        tools:layout="@layout/fragment_littlered_interactive1" >
+        tools:layout="@layout/fragment_littlered_interactive" >
         <action
             android:id="@+id/action_littleredInteractive1Fragment_to_littleredResult1Fragment"
             app:destination="@id/littleredResult1Fragment"
@@ -66,7 +66,7 @@
         android:id="@+id/littleredResult1Fragment"
         android:name="com.example.cyberfables.interactives.LittleredResult1Fragment"
         android:label="fragment_littlered_result1"
-        tools:layout="@layout/fragment_littlered_result1" >
+        tools:layout="@layout/fragment_littlered_result" >
         <action
             android:id="@+id/action_littleredResult1Fragment_to_readerFragment"
             app:destination="@id/readerFragment"
@@ -154,7 +154,7 @@
         android:id="@+id/littleredInteractive2Fragment"
         android:name="com.example.cyberfables.interactives.LittleredInteractive2Fragment"
         android:label="fragment_littlered_interactive2"
-        tools:layout="@layout/fragment_littlered_interactive2" >
+        tools:layout="@layout/fragment_littlered_interactive" >
         <action
             android:id="@+id/action_littleredInteractive2Fragment_to_littleredResult2Fragment"
             app:destination="@id/littleredResult2Fragment"
@@ -168,7 +168,7 @@
         android:id="@+id/littleredResult2Fragment"
         android:name="com.example.cyberfables.interactives.LittleredResult2Fragment"
         android:label="fragment_littlered_result2"
-        tools:layout="@layout/fragment_littlered_result1" >
+        tools:layout="@layout/fragment_littlered_result" >
         <action
             android:id="@+id/action_littleredResult2Fragment_to_readerFragment"
             app:destination="@id/readerFragment"

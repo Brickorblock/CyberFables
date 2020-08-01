@@ -8,15 +8,13 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.cyberfables.BookDetailFragment
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.database.AppDatabase
 import com.example.cyberfables.entities.Fable
-import kotlinx.android.synthetic.main.fragment_book_detail.*
-import kotlinx.android.synthetic.main.fragment_littlered_interactive1.*
-import kotlinx.android.synthetic.main.fragment_littlered_result1.*
-import kotlinx.android.synthetic.main.fragment_littlered_result1.view.*
+import kotlinx.android.synthetic.main.fragment_littlered_result.view.*
 
 class LittleredResult1Fragment() : Fragment() {
 
@@ -36,16 +34,25 @@ class LittleredResult1Fragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_littlered_result1, container, false)
+        val root = inflater.inflate(R.layout.fragment_littlered_result, container, false)
         
         val pageImage = root.pageImage
         nextButton = root.nextButton
 
+        var image: Int
+
         if (correctChoice) {
-            pageImage.setImageResource(R.drawable.littlered_3_decision1_correct)
+            image = R.drawable.littlered_3_decision1_correct
         } else {
-            pageImage.setImageResource(R.drawable.littlered_3_decision1_incorrect)
+            image = R.drawable.littlered_3_decision1_incorrect
         }
+
+        Glide.with(pageImage.context)
+            .load(image)
+            .dontAnimate()
+            .thumbnail(0.1f)
+            .into(pageImage)
+
 
         // get the littleRed fable
         val db = AppDatabase.getDatabase(requireContext())

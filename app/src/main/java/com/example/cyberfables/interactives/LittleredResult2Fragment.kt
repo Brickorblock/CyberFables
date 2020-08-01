@@ -14,10 +14,7 @@ import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.database.AppDatabase
 import com.example.cyberfables.entities.Fable
-import kotlinx.android.synthetic.main.fragment_book_detail.*
-import kotlinx.android.synthetic.main.fragment_littlered_interactive1.*
-import kotlinx.android.synthetic.main.fragment_littlered_result1.*
-import kotlinx.android.synthetic.main.fragment_littlered_result1.view.*
+import kotlinx.android.synthetic.main.fragment_littlered_result.view.*
 
 class LittleredResult2Fragment() : Fragment() {
 
@@ -37,7 +34,7 @@ class LittleredResult2Fragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_littlered_result1, container, false)
+        val root = inflater.inflate(R.layout.fragment_littlered_result, container, false)
         
         val pageImage = root.pageImage
         nextButton = root.nextButton
@@ -64,14 +61,15 @@ class LittleredResult2Fragment() : Fragment() {
             .thumbnail(0.1f)
             .into(pageImage)
 
-        //change the page to open to the one after the minigame
-        fable.pageToOpenOn = fable.pages.indexOf(fable.interactivePages?.get(1))
         //remove all the interactive minigames since this is the last one
         for (page in fable.interactivePages!!) {
             fable.pages.remove(page)
         }
         fable.interactivePages?.clear()
         fable.interactiveFragmentsNav?.clear()
+
+        //set the page to open on to the page after the minigame
+        fable.pageToOpenOn = fable.pages.indexOf(R.drawable.littlered_7)
 
         // Inflate the layout for this fragment
         return root

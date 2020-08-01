@@ -10,9 +10,11 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_book_detail.*
 import kotlinx.android.synthetic.main.fragment_book_detail.view.*
+import kotlinx.android.synthetic.main.fragment_littlered_interactive.*
 
 class BookDetailFragment() : Fragment() {
     var fable: Fable? = null
@@ -41,7 +43,10 @@ class BookDetailFragment() : Fragment() {
             blurbText.text = fable!!.blurb
             teachesText.text = fable!!.teaches
 
-            coverImage.setImageResource(fable!!.coverImg)
+            Glide.with(coverImage.context)
+                .load(fable!!.coverImg)
+                .dontAnimate()
+                .into(coverImage)
         }
     }
 
