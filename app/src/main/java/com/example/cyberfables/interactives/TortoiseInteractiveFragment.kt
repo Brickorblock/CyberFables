@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
+import com.example.cyberfables.SoundMaker
 import com.example.cyberfables.entities.PasswordMinigame
 import com.example.cyberfables.entities.PasswordQuestion
 import kotlinx.android.synthetic.main.fragment_littlered_result.*
@@ -37,7 +38,7 @@ class TortoiseInteractiveFragment : Fragment() {
             .thumbnail(0.1f)
             .into(image)
 
-        Helper().playSound(image.context, R.raw.tortoise_end_song)
+        SoundMaker.playSound(image.context, R.raw.tortoise_end_song)
 
         nextButton.setOnClickListener {
 

@@ -1,8 +1,11 @@
 package com.example.cyberfables
 
+import android.media.SoundPool
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -22,8 +25,6 @@ class MainActivity : AppCompatActivity() {
         val db = AppDatabase.getDatabase(applicationContext)
         db.fableDao().insertFables(FableInit().initFables())
 
-        //init mediaPlayer
-
 
         //set the app to fullscreen (hide status bar)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -31,6 +32,11 @@ class MainActivity : AppCompatActivity() {
         //Setup nav controller
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
+    }
+
+    override fun onDestroy() {
+        SoundMaker.soundPool.release()
+        super.onDestroy()
     }
 
 

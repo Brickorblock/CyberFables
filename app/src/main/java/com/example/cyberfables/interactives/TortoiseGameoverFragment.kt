@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
+import com.example.cyberfables.SoundMaker
 import com.example.cyberfables.entities.PasswordMinigame
 import kotlinx.android.synthetic.main.fragment_tortoise_gameover.*
 
@@ -47,7 +48,7 @@ class TortoiseGameoverFragment : Fragment() {
             scoreText.text = "You Ran Out of Lives! (You Got ${gameInstance.score} Correct)"
         }
 
-        Helper().playSound(tortoiseImage.context, sound)
+        SoundMaker.playSound(tortoiseImage.context, sound)
 
         backButton.setOnClickListener {
             (context as MainActivity).navController.popBackStack()

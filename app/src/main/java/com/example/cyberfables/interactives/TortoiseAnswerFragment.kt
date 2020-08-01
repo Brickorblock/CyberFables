@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
+import com.example.cyberfables.SoundMaker
 import com.example.cyberfables.entities.PasswordMinigame
 import com.example.cyberfables.entities.PasswordQuestion
 import kotlinx.android.synthetic.main.fragment_tortoise_answer.*
@@ -60,7 +61,7 @@ class TortoiseAnswerFragment : Fragment() {
             hareImage.setImageResource(R.drawable.hare_sad)
         }
 
-        Helper().playSound(hareImage.context, sound)
+        SoundMaker.playSound(hareImage.context, sound)
 
         setAnswersText()
 

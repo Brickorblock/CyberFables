@@ -10,10 +10,7 @@ import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.cyberfables.BookDetailFragment
-import com.example.cyberfables.Helper
-import com.example.cyberfables.MainActivity
-import com.example.cyberfables.R
+import com.example.cyberfables.*
 import com.example.cyberfables.database.AppDatabase
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_littlered_result.view.*
@@ -58,7 +55,7 @@ class LittleredResult1Fragment() : Fragment() {
             .thumbnail(0.1f)
             .into(pageImage)
 
-        Helper().playSound(pageImage.context, sound)
+        SoundMaker.playSound(pageImage.context, sound)
 
 
         // get the littleRed fable

@@ -3,11 +3,18 @@ package com.example.cyberfables
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.media.SoundPool
+import android.os.Build
 import android.util.Log
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
+import com.example.cyberfables.entities.Fable
+import kotlinx.coroutines.withContext
 
 class Helper {
+
 
     // this is used to handle custom hitboxes (touch zones) on a static image -
     // we overlay the image with a hitbox map containing different colours, then we determine
@@ -30,22 +37,5 @@ class Helper {
         }
 
         return pixel
-    }
-
-    //media player to play 1 off media files in the interactive activities
-    fun playSound(context: Context, sound: Int) {
-        var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, sound )
-        mediaPlayer?.start()
-        Log.d("mediaPlayer", "media player started")
-        mediaPlayer?.setOnCompletionListener {
-            mediaPlayer?.release()
-            mediaPlayer = null
-            Log.d("mediaPlayer", "media player released")
-        }
-        mediaPlayer?.setOnErrorListener { mp, what, extra ->
-            mp.reset()
-            Log.d("mediaPlayer", "error $what $extra")
-            return@setOnErrorListener true
-        }
     }
 }
