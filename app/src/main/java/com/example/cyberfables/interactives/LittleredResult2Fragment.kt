@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.cyberfables.BookDetailFragment
+import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.database.AppDatabase
@@ -65,8 +66,7 @@ class LittleredResult2Fragment() : Fragment() {
             .thumbnail(0.1f)
             .into(pageImage)
 
-        val mediaPlayer = MediaPlayer.create(pageImage.context, sound )
-        mediaPlayer?.start()
+        Helper().playSound(pageImage.context, sound)
 
         //remove all the interactive minigames since this is the last one
         for (page in fable.interactivePages!!) {

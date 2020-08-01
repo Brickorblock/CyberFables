@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.PasswordMinigame
@@ -46,8 +47,7 @@ class TortoiseGameoverFragment : Fragment() {
             scoreText.text = "You Ran Out of Lives! (You Got ${gameInstance.score} Correct)"
         }
 
-        val mediaPlayer = MediaPlayer.create(tortoiseImage.context, sound )
-        mediaPlayer?.start()
+        Helper().playSound(tortoiseImage.context, sound)
 
         backButton.setOnClickListener {
             (context as MainActivity).navController.popBackStack()

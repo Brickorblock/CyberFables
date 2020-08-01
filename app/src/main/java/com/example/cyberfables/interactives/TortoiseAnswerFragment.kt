@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.example.cyberfables.Helper
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.PasswordMinigame
@@ -59,8 +60,7 @@ class TortoiseAnswerFragment : Fragment() {
             hareImage.setImageResource(R.drawable.hare_sad)
         }
 
-        val mediaPlayer = MediaPlayer.create(hareImage.context, sound )
-        mediaPlayer?.start()
+        Helper().playSound(hareImage.context, sound)
 
         setAnswersText()
 

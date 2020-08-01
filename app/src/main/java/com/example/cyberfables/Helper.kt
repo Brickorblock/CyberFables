@@ -1,7 +1,9 @@
 package com.example.cyberfables
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.media.MediaPlayer
 import android.widget.ImageView
 
 class Helper {
@@ -27,5 +29,16 @@ class Helper {
         }
 
         return pixel
+    }
+
+    //media player to play 1 off media files in the interactive activities
+    fun playSound(context: Context, sound: Int){
+        val mediaPlayer = MediaPlayer.create(context, sound )
+        mediaPlayer.setOnPreparedListener {
+            mediaPlayer.start()
+        }
+        mediaPlayer.setOnCompletionListener {
+            mediaPlayer.release()
+        }
     }
 }
