@@ -25,8 +25,6 @@ class BookDetailFragment() : Fragment() {
         val KEY = "BookDetailFragment"
     }
 
-
-    //TODO allow swipe on detail fragment to change books
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -24,17 +24,6 @@ class BookshelfFragment: Fragment() {
     var selectedPosition = 0
     private var prevPosition = 0
 
-    companion object {
-
-        fun newInstance(): BookshelfFragment {
-            return BookshelfFragment()
-        }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
     // swithces to fable; uses position and prevPosition to determine switching animations
     fun onChosen(fable: Fable) {
 

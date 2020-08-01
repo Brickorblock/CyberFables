@@ -2,6 +2,7 @@ package com.example.cyberfables
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -20,6 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         val db = AppDatabase.getDatabase(applicationContext)
         db.fableDao().insertFables(initFables())
+
+        //set the app to fullscreen (hide status bar)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
         //Setup nav controller
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
