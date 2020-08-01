@@ -39,6 +39,14 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/bookshelfFragment" />
+        <action
+            android:id="@+id/action_readerFragment_to_littleredInteractive2Fragment"
+            app:destination="@id/littleredInteractive2Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/bookshelfFragment" />
     </fragment>
     <fragment
         android:id="@+id/littleredInteractive1Fragment"
@@ -141,5 +149,33 @@
             app:popEnterAnim="@anim/fragment_open_enter"
             app:popExitAnim="@anim/fragment_open_exit"
             app:popUpTo="@id/tortoiseInstructionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/littleredInteractive2Fragment"
+        android:name="com.example.cyberfables.interactives.LittleredInteractive2Fragment"
+        android:label="fragment_littlered_interactive2"
+        tools:layout="@layout/fragment_littlered_interactive2" >
+        <action
+            android:id="@+id/action_littleredInteractive2Fragment_to_littleredResult2Fragment"
+            app:destination="@id/littleredResult2Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/bookshelfFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/littleredResult2Fragment"
+        android:name="com.example.cyberfables.interactives.LittleredResult2Fragment"
+        android:label="fragment_littlered_result2"
+        tools:layout="@layout/fragment_littlered_result1" >
+        <action
+            android:id="@+id/action_littleredResult2Fragment_to_readerFragment"
+            app:destination="@id/readerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/bookshelfFragment" />
     </fragment>
 </navigation>
