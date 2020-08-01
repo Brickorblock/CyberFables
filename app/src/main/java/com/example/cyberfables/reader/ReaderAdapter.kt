@@ -1,5 +1,6 @@
 package com.example.cyberfables.reader
 
+import android.media.MediaPlayer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,11 @@ class ReaderAdapter(
             .dontAnimate()
             .thumbnail(0.1f)
             .into(holder.itemView.pageImage)
+
+        if(fable.sounds.containsKey(prev)){
+            val mediaPlayer = MediaPlayer.create(holder.itemView.context, fable.sounds.get(prev)!!)
+            mediaPlayer?.start()
+        }
 
 
         // if user stays on the 1st page for too long, animate a page swipe icon hint

@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.tortoise_6,
                 R.drawable.tortoise_7,
                 R.drawable.tortoise_8,
+                R.drawable.tortoise_9,
                 R.drawable.tortoise_10,
                 R.drawable.tortoise_11,
                 R.drawable.tortoise_12,
