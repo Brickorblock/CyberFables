@@ -102,10 +102,14 @@ class BookshelfFragment: Fragment() {
             }
 
             val book = dataset[position]
+            holder.iconImage.setImageResource(dataset[position].iconImg)
+/*sometime when i load it with glide i see the images loading in
+might feel more fluid to just set the image resource
             Glide.with(holder.iconImage.context)
                 .load(book.iconImg)
                 .dontAnimate()
                 .into(holder.iconImage)
+*/
             holder.itemView.setOnClickListener {
                 // update positions & dataset (for itemview highlighting), then switch fragment
                 selectedPosition = position

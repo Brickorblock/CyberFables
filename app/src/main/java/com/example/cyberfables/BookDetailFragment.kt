@@ -43,10 +43,15 @@ class BookDetailFragment() : Fragment() {
             blurbText.text = fable!!.blurb
             teachesText.text = fable!!.teaches
 
+            coverImage.setImageResource(fable!!.coverImg)
+
+/*sometime when i load it with glide i see the images loading in
+might feel more fluid to just set the image resource
             Glide.with(coverImage.context)
                 .load(fable!!.coverImg)
                 .dontAnimate()
                 .into(coverImage)
+*/
         }
     }
 
