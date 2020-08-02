@@ -38,9 +38,14 @@ class ReaderAdapter(
         val curr = fable.pages[position]
         // prev paged used to check interactive
         var prev = curr
+        var prevPrev = curr
         if (position > 0) {
             prev = fable.pages[position - 1]
+        } else if (position > 1) {
+            prev = fable.pages[position - 2]
         }
+
+
 
         Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
         //only load an image if the page is NOT interactive
@@ -57,15 +62,29 @@ class ReaderAdapter(
             soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
         }
 
+        val lastPage = fable.lastStoryPage
+        Log.d("ReaderAdapter", "curr = $curr, prev = $prev, lastStoryPage = $lastPage")
 
-        // if user stays on the 1st page for too long, animate a page swipe icon hint
-        if (position != 0) {
-            holder.itemView.swipe_icon.alpha = 0F
-        } else {
-            // play animations
-            val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_left);
-            anim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
+        // animate swipe icon hints for first and last pages
+        val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_left)
+        anim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
+        if (position == 0) {
+            // play animations for first page
+            holder.itemView.learnText.alpha = 1F
+            holder.itemView.swipe_icon.alpha = 1F
             holder.itemView.swipe_icon.animation = anim
+            holder.itemView.learnText.alpha = 0F
+        } else if (prevPrev == lastPage) {
+            // play animations for last page
+            Log.d("ReaderAdapter", "in Last Page")
+            holder.itemView.learnText.alpha = 1F
+            holder.itemView.swipe_icon.alpha = 1F
+            holder.itemView.swipe_icon.animation = anim
+            holder.itemView.learnText.animation = anim
+        } else {
+            // hide elements when not needed
+            holder.itemView.swipe_icon.alpha = 0F
+            holder.itemView.learnText.alpha = 0F
         }
 
         //launch interactive fragment when reached - skip this if there are no interactives in fable

@@ -28,10 +28,13 @@ class FableInit {
                 R.drawable.tortoise_11,
                 R.drawable.tortoise_12,
                 R.drawable.tortoise_13,
-                R.drawable.tortoise_13
+                R.drawable.passwords_1,
+                R.drawable.passwords_3,
+                R.drawable.passwords_4,
+                R.drawable.passwords_5,
+                R.drawable.passwords_5
             ),
-            //empty lists = no interactive content
-            mutableListOf(R.drawable.tortoise_13),
+            mutableListOf(R.drawable.passwords_5),
             mutableListOf(R.id.action_readerFragment_to_tortoiseInteractiveFragment),
             hashMapOf<Int, Int>(
                 R.drawable.tortoise_1 to  R.raw.tortoise_snore,
@@ -43,8 +46,10 @@ class FableInit {
                 R.drawable.tortoise_8 to R.raw.tortoise_phone_chatter,
                 R.drawable.tortoise_9 to R.raw.tortoise_dingdong,
                 R.drawable.tortoise_10 to R.raw.tortoise_realisation_ah2,
-                R.drawable.tortoise_12 to R.raw.tortoise_yay
-            )
+                R.drawable.tortoise_12 to R.raw.tortoise_yay,
+                R.drawable.tortoise_13 to R.raw.tortoise_end_song
+            ),
+            R.drawable.tortoise_13
         )
 
         val fable2 = Fable(
@@ -73,7 +78,11 @@ class FableInit {
                 R.drawable.littlered_10_badend,
                 R.drawable.littlered_10_goodend,
                 R.drawable.littlered_11_converged,
-                R.drawable.littlered_12_converged
+                R.drawable.littlered_12_converged,
+                R.drawable.phishing_1,
+                R.drawable.phishing_2,
+                R.drawable.phishing_3,
+                R.drawable.phishing_4
             ),
             mutableListOf(R.drawable.littlered_3_decision1, R.drawable.littlered_6_decision2),
             mutableListOf(
@@ -92,7 +101,8 @@ class FableInit {
                 R.drawable.littlered_9 to R.raw.lilred_error,
                 R.drawable.littlered_10_badend to  R.raw.hansel_whimper,
                 R.drawable.littlered_12_converged to R.raw.lilred_hmm1
-            )
+            ),
+            R.drawable.littlered_12_converged
         )
 
         val fable3 = Fable(
@@ -125,7 +135,11 @@ class FableInit {
                 R.drawable.hansel_20,
                 R.drawable.hansel_21,
                 R.drawable.hansel_22,
-                R.drawable.hansel_23
+                R.drawable.hansel_23,
+                R.drawable.footprints_1,
+                R.drawable.footprints_2,
+                R.drawable.footprints_3,
+                R.drawable.footprints_4
             ),
             //empty lists = no interactive content
             mutableListOf(), mutableListOf(),
@@ -145,7 +159,8 @@ class FableInit {
                 R.drawable.hansel_19 to R.raw.hansel_footsteps,
                 R.drawable.hansel_20 to R.raw.hansel_gasp,
                 R.drawable.hansel_23 to R.raw.hansel_end_jingle
-            )
+            ),
+            R.drawable.hansel_23
         )
         var fables : ArrayList<Fable> = ArrayList()
         fables.add(fable1)

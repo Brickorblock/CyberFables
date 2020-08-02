@@ -22,6 +22,8 @@ import kotlinx.android.parcel.Parcelize
     var interactivePages: MutableList<Int>?,
     var interactiveFragmentsNav: MutableList<Int>?,
     var sounds: HashMap<Int, Int>,
+    var lastStoryPage: Int,
     var pageToOpenOn: Int = 0
+
 
     ) : Parcelable

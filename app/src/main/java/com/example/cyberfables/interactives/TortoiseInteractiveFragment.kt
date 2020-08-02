@@ -33,22 +33,15 @@ class TortoiseInteractiveFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(image.context)
-            .load(R.drawable.tortoise_13)
+            .load(R.drawable.passwords_5)
             .dontAnimate()
             .thumbnail(0.1f)
             .into(image)
-
-        SoundMaker.playSound(image.context, R.raw.tortoise_end_song, -1)
 
         nextButton.setOnClickListener {
             (context as MainActivity).navController.
             navigate(R.id.action_tortoiseInteractiveFragment_to_tortoiseInstructionFragment)
         }
-    }
-
-    override fun onDetach() {
-        SoundMaker.soundPool.autoPause()
-        super.onDetach()
     }
 
 }
