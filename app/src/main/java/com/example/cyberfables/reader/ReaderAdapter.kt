@@ -20,6 +20,7 @@ class ReaderAdapter(
 
 ) : RecyclerView.Adapter<ReaderAdapter.ReaderViewHolder>() {
     private lateinit var mRecyclerView: RecyclerView
+    private var mute: Boolean = false
 
     inner class ReaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -52,11 +53,15 @@ class ReaderAdapter(
                 .into(holder.itemView.pageImage)
         }
 
-        //sounds for all items except first and last
-        if(fable.sounds.containsKey(prev)){
+        //play sounds for all items except first and last
+        if(!mute and fable.sounds.containsKey(prev)){
             soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
         }
 
+        //mute the sounds when u get to the last page
+        if(curr == fable.pages.last()){
+            mute = true
+        }
 
         // if user stays on the 1st page for too long, animate a page swipe icon hint
         if (position != 0) {
