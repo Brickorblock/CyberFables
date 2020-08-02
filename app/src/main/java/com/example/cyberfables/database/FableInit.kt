@@ -1,6 +1,5 @@
 package com.example.cyberfables.database
 
-import android.util.Log
 import com.example.cyberfables.R
 import com.example.cyberfables.entities.Fable
 
@@ -44,7 +43,8 @@ class FableInit {
                 R.drawable.tortoise_9 to R.raw.tortoise_dingdong,
                 R.drawable.tortoise_10 to R.raw.tortoise_realisation_ah2,
                 R.drawable.tortoise_12 to R.raw.tortoise_yay
-            )
+            ),
+            R.raw.tortoise_end_song
         )
 
         val fable2 = Fable(
@@ -92,7 +92,8 @@ class FableInit {
                 R.drawable.littlered_9 to R.raw.lilred_error,
                 R.drawable.littlered_10_badend to  R.raw.hansel_whimper,
                 R.drawable.littlered_12_converged to R.raw.lilred_hmm1
-            )
+            ),
+            R.raw.tortoise_end_song
         )
 
         val fable3 = Fable(

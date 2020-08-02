@@ -10,7 +10,7 @@ object SoundMaker {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     var soundPool: SoundPool = initSoundPool()
     var soundMap: HashMap<Int, Int> = hashMapOf()
-    var context: Context? = null
+    private var context: Context? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun initSoundPool(): SoundPool {
@@ -24,18 +24,19 @@ object SoundMaker {
             .build()
     }
 
+
     //media player to play 1 off media files in the interactive activities
-    fun playSound(fragContext: Context, soundRes: Int, loop: Int = 0) {
-        //if context is null, set context
-        if(context == null) context = (fragContext as MainActivity).applicationContext
+    fun playSound(fragContext: Context, soundRes: Int, loop: Int = 0, volume: Float = 1F, priority: Int = 1) {
+        //if context is null, set context to fragContext
+        context = context ?: (fragContext as MainActivity).applicationContext
         //play the sound
-        player(soundRes,loop)
+        player(soundRes,loop, volume, priority)
     }
 
-    private fun player(soundRes: Int, loop: Int){
+    private fun player(soundRes: Int, loop: Int, volume: Float, priority: Int){
         //if soundmap has the sound, play it
         if (soundMap.containsKey(soundRes)) {
-            playSoundNoLoad(soundMap[soundRes]!!, loop)
+            playSoundNoLoad(soundMap[soundRes]!!, loop, volume, priority)
         }
         //if it doesnt
         else {
@@ -45,14 +46,14 @@ object SoundMaker {
             soundMap[soundRes] = soundID
             //wait for it to finish loading, then play it
             soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
-                playSoundNoLoad(soundID, loop)
+                playSoundNoLoad(soundID, loop, volume, priority)
             }
         }
     }
 
 
-    private fun playSoundNoLoad( soundID: Int, loop: Int){
-        soundPool.play(soundID, 1F, 1F, 1, loop, 1F)
+    private fun playSoundNoLoad( soundID: Int, loop: Int, volume: Float, priority: Int){
+        soundPool.play(soundID, volume, volume, priority, loop, 1F)
     }
 
 }

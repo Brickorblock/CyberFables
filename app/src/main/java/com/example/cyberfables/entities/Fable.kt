@@ -2,9 +2,7 @@ package com.example.cyberfables.entities
 
 import android.os.Parcelable
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -22,6 +20,7 @@ import kotlinx.android.parcel.Parcelize
     var interactivePages: MutableList<Int>?,
     var interactiveFragmentsNav: MutableList<Int>?,
     var sounds: HashMap<Int, Int>,
+    var bgMusic: Int? = null,
     var pageToOpenOn: Int = 0
 
     ) : Parcelable
