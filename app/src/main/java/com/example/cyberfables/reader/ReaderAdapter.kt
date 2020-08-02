@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
+import com.example.cyberfables.SoundMaker
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_storypage.view.*
 
@@ -43,7 +44,7 @@ class ReaderAdapter(
         if (position > 0) {
             prev = fable.pages[position - 1]
         } else if (position > 1) {
-            prev = fable.pages[position - 2]
+            prevPrev = fable.pages[position - 2]
         }
 
         Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
@@ -56,15 +57,12 @@ class ReaderAdapter(
                 .into(holder.itemView.pageImage)
         }
 
-        //play sounds for all items except first and last
+        //play sounds for pages if mute is false
         if(!mute and fable.sounds.containsKey(prev)){
+            //stop the sound for the first image
             soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
         }
 
-        //mute the sounds when u get to the last page
-        if(curr == fable.pages.last()){
-            mute = true
-        }
 
         val lastPage = fable.lastStoryPage
         Log.d("ReaderAdapter", "curr = $curr, prev = $prev, lastStoryPage = $lastPage")
@@ -85,6 +83,9 @@ class ReaderAdapter(
             holder.itemView.swipe_icon.alpha = 1F
             holder.itemView.swipe_icon.animation = anim
             holder.itemView.learnText.animation = anim
+            //mute the sounds when u get to the last page
+            //prevents sounds playing out of order as you swipe backwards
+            mute = true
         } else {
             // hide elements when not needed
             holder.itemView.swipe_icon.alpha = 0F

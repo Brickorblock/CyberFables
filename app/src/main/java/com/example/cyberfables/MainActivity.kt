@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        SoundMaker.soundPool.autoPause()
+        SoundMaker.Pause()
     }
 
     override fun onDestroy() {
-        SoundMaker.soundPool.release()
+        SoundMaker.Release()
         super.onDestroy()
     }
 

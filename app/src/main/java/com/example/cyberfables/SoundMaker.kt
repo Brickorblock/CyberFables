@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 object SoundMaker {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     var soundPool: SoundPool = initSoundPool()
-    var soundMap: HashMap<Int, Int> = hashMapOf()
+    private var soundMap: HashMap<Int, Int> = hashMapOf()
     private var soundContext: Context? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -19,7 +19,7 @@ object SoundMaker {
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .build()
         return SoundPool.Builder()
-            .setMaxStreams(1)
+            .setMaxStreams(2)
             .setAudioAttributes(audioAttributes)
             .build()
     }
@@ -29,6 +29,14 @@ object SoundMaker {
         //set context
         soundContext =  context
 
+    }
+
+    fun Pause() {
+        soundPool.autoPause()
+    }
+
+    fun Release(){
+        soundPool.release()
     }
 
     //media player to play 1 off media files in the interactive activities
@@ -54,7 +62,6 @@ object SoundMaker {
             }
         }
     }
-
 
     private fun playSoundNoLoad( soundID: Int, loop: Int, volume: Float, priority: Int){
         soundPool.play(soundID, volume, volume, priority, loop, 1F)
