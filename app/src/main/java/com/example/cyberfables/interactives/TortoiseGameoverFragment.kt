@@ -21,6 +21,11 @@ class TortoiseGameoverFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //grab args
         gameInstance = requireArguments().getParcelable(TortoiseInstructionFragment.KEY)!!
+
+        var sound = R.raw.tortoise_game_over
+        if(gameInstance.userCorrect) sound = R.raw.tortoise_win
+        SoundMaker.playSound(sound)
+
     }
 
     override fun onCreateView(
@@ -34,21 +39,17 @@ class TortoiseGameoverFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var sound: Int
 
         if (gameInstance.lives > 0) {
             gameoverText.text = "Well Done!"
-            sound = R.raw.tortoise_win
             tortoiseImage.setImageResource(R.drawable.tortoise_happy)
             scoreText.text = "You Got ${gameInstance.score} / ${gameInstance.totalSize} Correct!"
         } else {
             gameoverText.text = "Game Over!"
-            sound = R.raw.tortoise_game_over
             tortoiseImage.setImageResource(R.drawable.tortoise_sad)
             scoreText.text = "You Ran Out of Lives! (You Got ${gameInstance.score} Correct)"
         }
 
-        SoundMaker.playSound(tortoiseImage.context, sound)
 
         backButton.setOnClickListener {
             (context as MainActivity).navController.popBackStack()

@@ -4,6 +4,7 @@ import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,11 +45,18 @@ class ReaderFragment : Fragment() {
         viewPager.setCurrentItem(fable.pageToOpenOn, false)
 
 
-        //play music for first page
-        val firstPage = fable.pages[fable.pageToOpenOn]
+        //play the background music and the music for the first visible page
+        val firstPage = viewPager.currentItem
         soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
-            if (fable.sounds.containsKey(firstPage)){
-                soundPool!!.play(soundMap[firstPage]!!, 1F, 1F, 1, 0, 1F)
+            if (sampleId == soundMap[firstPage]){
+                val test = soundPool!!.play(soundMap[firstPage]!!, 1F, 1F, 1, 0, 1F)
+                Log.d("sound", "$test for first sound ")
+            }
+            //play background music if theres any of it
+            fable.bgMusic?.let{
+                if (soundMap[fable.bgMusic!!] == sampleId){
+                    soundPool!!.play(soundMap[fable.bgMusic!!]!!, 0.01F, 0.01F, 2, -1, 1F)
+                }
             }
         }
         // Inflate the layout for this fragment
@@ -61,21 +69,28 @@ class ReaderFragment : Fragment() {
             .setUsage(AudioAttributes.USAGE_GAME)
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .build()
+        var maxStream = 1
+        //if theres background music increase the max streams to 2
+        fable.bgMusic?.let { maxStream = 2}
         soundPool = SoundPool.Builder()
-            .setMaxStreams(1)
+            .setMaxStreams(maxStream)
             .setAudioAttributes(audioAttributes)
             .build()
         val soundMap = HashMap<Int,Int>()
+        //load the sounds for each page
         for ((key, value) in fable.sounds) {
             soundMap[key] = soundPool!!.load(context,value,1)
         }
+        //load the background music for the fable
+        fable.bgMusic?.let {soundMap[fable.bgMusic!!] = soundPool!!.load(context, fable.bgMusic!!, 1)}
         return soundMap
     }
 
-    override fun onDestroyView() {
+    //stops the music when the screen is locked
+    override fun onStop() {
+        super.onStop()
         soundPool?.release()
         soundPool = null
-        super.onDestroyView()
     }
 
     // handles custom pagination animation

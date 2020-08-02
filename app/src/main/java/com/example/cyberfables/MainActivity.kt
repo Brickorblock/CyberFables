@@ -22,9 +22,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //init the db
         val db = AppDatabase.getDatabase(applicationContext)
         db.fableDao().insertFables(FableInit().initFables())
 
+        SoundMaker.giveContext(applicationContext)
 
         //set the app to fullscreen (hide status bar)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -32,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         //Setup nav controller
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        SoundMaker.soundPool.autoPause()
     }
 
     override fun onDestroy() {

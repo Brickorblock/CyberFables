@@ -26,6 +26,11 @@ class TortoiseAnswerFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //grab args
         gameInstance = requireArguments().getParcelable(TortoiseInstructionFragment.KEY)!!
+
+        var sound = R.raw.tortoise_incorrect_sound_effect
+        if(gameInstance.userCorrect)  sound = R.raw.tortoise_right_answer_sound_effect
+        SoundMaker.playSound(sound)
+
     }
 
     override fun onCreateView(
@@ -47,21 +52,16 @@ class TortoiseAnswerFragment : Fragment() {
 
         passwordText.text = currQ.password
 
-        var sound: Int
 
         if (userCorrect) {
             resultText.text = "Correct - Good Job!"
-            sound = R.raw.tortoise_right_answer_sound_effect
             resultText.setTextColor(resources.getColor(R.color.colorGreen))
             hareImage.setImageResource(R.drawable.hare_happy)
         } else {
             resultText.text = "Incorrect - Good Try!"
-            sound = R.raw.tortoise_incorrect_sound_effect
             resultText.setTextColor(resources.getColor(R.color.colorRed))
             hareImage.setImageResource(R.drawable.hare_sad)
         }
-
-        SoundMaker.playSound(hareImage.context, sound)
 
         setAnswersText()
 
