@@ -27,6 +27,11 @@ class LittleredResult2Fragment() : Fragment() {
         // grab args
         correctChoice =
             requireArguments().getBoolean(LittleredInteractive2Fragment.KEY)
+
+        var sound = R.raw.lilred_incorrect_sound_effect
+        if(correctChoice) sound = R.raw.lilred_right_answer_sound_effect
+        SoundMaker.playSound(sound)
+
     }
 
     override fun onCreateView(
@@ -43,16 +48,13 @@ class LittleredResult2Fragment() : Fragment() {
         fable = db.fableDao().getFable(1)
 
         var image: Int
-        var sound: Int
 
         if (correctChoice) {
             image = R.drawable.littlered_6_decision2_correct
-            sound = R.raw.lilred_right_answer_sound_effect
             fable.pages.remove(R.drawable.littlered_8_badend)
             fable.pages.remove(R.drawable.littlered_10_badend)
         } else {
             image = R.drawable.littlered_6_decision2_incorrect
-            sound = R.raw.lilred_incorrect_sound_effect
             fable.pages.remove(R.drawable.littlered_8_goodend)
             fable.pages.remove(R.drawable.littlered_10_goodend)
         }
@@ -62,8 +64,6 @@ class LittleredResult2Fragment() : Fragment() {
             .dontAnimate()
             .thumbnail(0.1f)
             .into(pageImage)
-
-        SoundMaker.playSound(pageImage.context, sound)
 
         //remove all the interactive minigames since this is the last one
         for (page in fable.interactivePages!!) {

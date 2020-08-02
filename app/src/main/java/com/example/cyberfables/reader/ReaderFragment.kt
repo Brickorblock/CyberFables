@@ -45,8 +45,8 @@ class ReaderFragment : Fragment() {
         viewPager.setCurrentItem(fable.pageToOpenOn, false)
 
 
-        //play the background music and the music for the first page
-        val firstPage = fable.pages[fable.pageToOpenOn]
+        //play the background music and the music for the first visible page
+        val firstPage = viewPager.currentItem
         soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
             if (sampleId == soundMap[firstPage]){
                 val test = soundPool!!.play(soundMap[firstPage]!!, 1F, 1F, 1, 0, 1F)
@@ -86,10 +86,11 @@ class ReaderFragment : Fragment() {
         return soundMap
     }
 
-    override fun onDestroyView() {
+    //stops the music when the screen is locked
+    override fun onStop() {
+        super.onStop()
         soundPool?.release()
         soundPool = null
-        super.onDestroyView()
     }
 
     // handles custom pagination animation

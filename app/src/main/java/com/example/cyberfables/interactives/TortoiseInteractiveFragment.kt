@@ -38,7 +38,7 @@ class TortoiseInteractiveFragment : Fragment() {
             .thumbnail(0.1f)
             .into(image)
 
-        SoundMaker.playSound(image.context, R.raw.tortoise_end_song, -1)
+        SoundMaker.playSound(R.raw.tortoise_end_song, -1)
 
         nextButton.setOnClickListener {
             (context as MainActivity).navController.

@@ -10,7 +10,7 @@ object SoundMaker {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     var soundPool: SoundPool = initSoundPool()
     var soundMap: HashMap<Int, Int> = hashMapOf()
-    private var context: Context? = null
+    private var soundContext: Context? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun initSoundPool(): SoundPool {
@@ -25,10 +25,14 @@ object SoundMaker {
     }
 
 
+    fun giveContext(context: Context){
+        //set context
+        soundContext =  context
+
+    }
+
     //media player to play 1 off media files in the interactive activities
-    fun playSound(fragContext: Context, soundRes: Int, loop: Int = 0, volume: Float = 1F, priority: Int = 1) {
-        //if context is null, set context to fragContext
-        context = context ?: (fragContext as MainActivity).applicationContext
+    fun playSound(soundRes: Int, loop: Int = 0, volume: Float = 1F, priority: Int = 1) {
         //play the sound
         player(soundRes,loop, volume, priority)
     }
@@ -41,7 +45,7 @@ object SoundMaker {
         //if it doesnt
         else {
             //load it
-            val soundID = soundPool!!.load(context,soundRes,1)
+            val soundID = soundPool!!.load(soundContext,soundRes,1)
             //save it in the hashmap
             soundMap[soundRes] = soundID
             //wait for it to finish loading, then play it

@@ -28,6 +28,10 @@ class LittleredResult1Fragment() : Fragment() {
         correctChoice =
             requireArguments().getBoolean(LittleredInteractive1Fragment.KEY)
 
+        var sound = R.raw.lilred_incorrect_sound_effect
+        if(correctChoice) sound = R.raw.lilred_right_answer_sound_effect
+        SoundMaker.playSound(sound)
+
     }
 
     override fun onCreateView(
@@ -39,15 +43,8 @@ class LittleredResult1Fragment() : Fragment() {
         val pageImage = root.pageImage
         nextButton = root.nextButton
 
-        var image: Int
-        var sound: Int
-        if (correctChoice) {
-            image = R.drawable.littlered_3_decision1_correct
-            sound = R.raw.lilred_right_answer_sound_effect
-        } else {
-            image = R.drawable.littlered_3_decision1_incorrect
-            sound = R.raw.lilred_incorrect_sound_effect
-        }
+        var image = R.drawable.littlered_3_decision1_incorrect
+        if (correctChoice) image = R.drawable.littlered_3_decision1_correct
 
         Glide.with(pageImage.context)
             .load(image)
@@ -55,14 +52,14 @@ class LittleredResult1Fragment() : Fragment() {
             .thumbnail(0.1f)
             .into(pageImage)
 
-        SoundMaker.playSound(pageImage.context, sound)
-
 
         // get the littleRed fable
         val db = AppDatabase.getDatabase(requireContext())
         fable = db.fableDao().getFable(1)
+
         //change the page to open to the one after the minigame
         fable.pageToOpenOn = fable.pages.indexOf(fable.interactivePages?.get(0))
+
         //remove the interactive minigame we just used
         fable.interactivePages?.removeAt(0)
         fable.pages.removeAt(fable.pageToOpenOn)
