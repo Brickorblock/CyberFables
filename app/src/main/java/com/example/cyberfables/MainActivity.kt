@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val db = AppDatabase.getDatabase(applicationContext)
         db.fableDao().insertFables(FableInit().initFables())
 
-        SoundMaker.giveContext(applicationContext)
+        SoundMaker.init(applicationContext)
 
         //set the app to fullscreen (hide status bar)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -36,9 +36,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onPause() {
+        SoundMaker.Pause()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        SoundMaker.Resume()
+        super.onResume()
+    }
 
     override fun onDestroy() {
-        SoundMaker.Release()
         super.onDestroy()
     }
 

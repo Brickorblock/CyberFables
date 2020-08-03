@@ -28,7 +28,7 @@ object SoundMaker {
     }
 
 
-    fun giveContext(context: Context){
+    fun init(context: Context){
         //set context
         soundContext =  context
 
@@ -45,7 +45,17 @@ object SoundMaker {
 
     fun Release(){
         soundPool.release()
+        soundMap.clear()
     }
+
+    fun Pause(){
+        soundPool.autoPause()
+    }
+
+    fun Resume(){
+        soundPool.autoResume()
+    }
+
 
     fun playBgMusic(soundRes: Int, vol: Float = 0.1F){
         //if the bg music isnt being played

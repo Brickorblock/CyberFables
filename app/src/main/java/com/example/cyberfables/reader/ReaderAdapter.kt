@@ -58,7 +58,7 @@ class ReaderAdapter(
         }
 
         //play sounds for pages
-        if(soundMap.containsKey(prev)){
+        if(soundMap.containsKey(prev) and (prev != fable.pages[fable.pageToOpenOn])){
             soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
             //remove sound after being played
             soundMap.remove(prev)
