@@ -57,10 +57,11 @@ class ReaderAdapter(
                 .into(holder.itemView.pageImage)
         }
 
-        //play sounds for pages if mute is false
-        if(!mute and fable.sounds.containsKey(prev)){
-            //stop the sound for the first image
+        //play sounds for pages
+        if(soundMap.containsKey(prev)){
             soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
+            //remove sound after being played
+            soundMap.remove(prev)
         }
 
 

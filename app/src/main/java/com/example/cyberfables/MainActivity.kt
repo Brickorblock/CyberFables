@@ -36,10 +36,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        SoundMaker.Pause()
-    }
 
     override fun onDestroy() {
         SoundMaker.Release()

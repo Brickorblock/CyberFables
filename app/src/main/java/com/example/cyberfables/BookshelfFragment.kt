@@ -71,6 +71,10 @@ class BookshelfFragment: Fragment() {
 
         }
 
+        //stop the background music when u leave a fable
+        SoundMaker.StopBgMusic()
+
+
         // Inflate the layout for this fragment
         return root
     }

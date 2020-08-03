@@ -1,5 +1,6 @@
 package com.example.cyberfables
 
+import android.animation.Animator
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
@@ -11,6 +12,8 @@ object SoundMaker {
     var soundPool: SoundPool = initSoundPool()
     private var soundMap: HashMap<Int, Int> = hashMapOf()
     private var soundContext: Context? = null
+    private var bgMusic: Int = 0
+    private var streamMap: HashMap<Int, Int> = hashMapOf()
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun initSoundPool(): SoundPool {
@@ -31,40 +34,50 @@ object SoundMaker {
 
     }
 
-    fun Pause() {
-        soundPool.autoPause()
+    fun StopBgMusic() {
+        //if there is bgmusic playing, stop it
+        if (bgMusic != 0){
+            soundPool.stop(streamMap[bgMusic]!!)
+            soundMap.remove(bgMusic)
+            bgMusic = 0
+        }
     }
 
     fun Release(){
         soundPool.release()
     }
 
-    //media player to play 1 off media files in the interactive activities
-    fun playSound(soundRes: Int, loop: Int = 0, volume: Float = 1F, priority: Int = 1) {
-        //play the sound
-        player(soundRes,loop, volume, priority)
+    fun playBgMusic(soundRes: Int, vol: Float = 0.1F){
+        //if the bg music isnt being played
+        if (bgMusic != soundRes){
+            //save it and play it
+            bgMusic = soundRes
+            playSound(bgMusic, -1, vol, 2)
+        }
     }
 
-    private fun player(soundRes: Int, loop: Int, volume: Float, priority: Int){
+    //media player to play 1 off media files in the interactive activities
+    fun playSound(soundRes: Int, loop: Int = 0, volume: Float = 1F, priority: Int = 1) {
         //if soundmap has the sound, play it
         if (soundMap.containsKey(soundRes)) {
             playSoundNoLoad(soundMap[soundRes]!!, loop, volume, priority)
         }
         //if it doesnt
         else {
-            //load it
-            val soundID = soundPool!!.load(soundContext,soundRes,1)
-            //save it in the hashmap
-            soundMap[soundRes] = soundID
+            //load it and save the sound in the hashmap
+            soundMap[soundRes] = soundPool!!.load(soundContext,soundRes,1)
             //wait for it to finish loading, then play it
             soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
-                playSoundNoLoad(soundID, loop, volume, priority)
+                playSoundNoLoad(soundRes, loop, volume, priority)
             }
         }
     }
 
-    private fun playSoundNoLoad( soundID: Int, loop: Int, volume: Float, priority: Int){
-        soundPool.play(soundID, volume, volume, priority, loop, 1F)
+    private fun playSoundNoLoad( soundRes: Int, loop: Int, volume: Float, priority: Int) {
+        val soundID = soundMap[soundRes]!!
+        val streamID = soundPool.play(soundID, volume, volume, priority, loop, 1F)
+        //store the stream ID for playback control
+        streamMap.put(soundRes, streamID)
     }
 
 }
