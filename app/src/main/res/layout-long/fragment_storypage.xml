@@ -8,6 +8,20 @@
     android:background="#000000">
 
     <ImageView
+        android:id="@+id/pageImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="page"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
         android:id="@+id/swipe_icon"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -29,20 +43,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/swipe_icon"
         app:layout_constraintStart_toStartOf="@+id/swipe_icon" />
-
-    <ImageView
-        android:id="@+id/pageImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="page"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/bookshelfButton"
