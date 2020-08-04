@@ -24,7 +24,11 @@ class TortoiseGameoverFragment : Fragment() {
 
         var sound = R.raw.tortoise_game_over
         if(gameInstance.userCorrect) sound = R.raw.tortoise_win
-        SoundMaker.playSound(sound)
+        try {
+            SoundMaker.playSound(sound)
+        } catch (e: KotlinNullPointerException) {
+            Thread.dumpStack()
+        }
 
     }
 

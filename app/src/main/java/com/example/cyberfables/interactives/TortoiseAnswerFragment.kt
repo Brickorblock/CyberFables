@@ -29,7 +29,11 @@ class TortoiseAnswerFragment : Fragment() {
 
         var sound = R.raw.tortoise_incorrect_sound_effect
         if(gameInstance.userCorrect)  sound = R.raw.tortoise_right_answer_sound_effect
-        SoundMaker.playSound(sound)
+        try {
+            SoundMaker.playSound(sound)
+        } catch (e: KotlinNullPointerException) {
+            Thread.dumpStack()
+        }
 
     }
 
