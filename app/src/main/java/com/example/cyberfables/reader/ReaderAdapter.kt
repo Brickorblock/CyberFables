@@ -111,6 +111,9 @@ class ReaderAdapter(
 
         //if on the last page
         if (position == itemCount-1) {
+            Log.d("ReaderAdapter", "On very last page")
+            holder.itemView.bookshelfButton.visibility = View.VISIBLE
+
             // play animations
             val buttonAnim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_slow);
             buttonAnim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000

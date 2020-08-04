@@ -30,7 +30,11 @@ class LittleredResult2Fragment() : Fragment() {
 
         var sound = R.raw.lilred_incorrect_sound_effect
         if(correctChoice) sound = R.raw.lilred_right_answer_sound_effect
-        SoundMaker.playSound(sound)
+        try {
+            SoundMaker.playSound(sound)
+        } catch (e: KotlinNullPointerException) {
+            Thread.dumpStack()
+        }
 
     }
 
