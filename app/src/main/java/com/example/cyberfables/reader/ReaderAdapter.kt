@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cyberfables.BookDetailFragment
 import com.example.cyberfables.MainActivity
 import com.example.cyberfables.R
 import com.example.cyberfables.SoundMaker
@@ -105,6 +107,23 @@ class ReaderAdapter(
             }
         } else {
             Log.d("ReaderAdapter", "No interactive pages - Skipping checkInteractive()...")
+        }
+
+        //if on the last page
+        if (position == itemCount-1) {
+            // play animations
+            val buttonAnim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_slow);
+            buttonAnim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
+            holder.itemView.bookshelfButton.animation = buttonAnim
+
+            // handle switching fragments on button press
+            holder.itemView.bookshelfButton.setOnClickListener {
+                //go back to the bookshelf
+                (holder.itemView.context as MainActivity).navController.popBackStack()
+            }
+
+        }else {
+            holder.itemView.bookshelfButton.visibility = View.GONE
         }
 
     }
