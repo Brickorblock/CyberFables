@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.cyberfables.entities.Fable
 
 // Annotates class to be a Room Database with a table (entity) of the Fable class
-@Database(entities = arrayOf(Fable::class), version = 12, exportSchema = false)
+@Database(entities = arrayOf(Fable::class), version = 13, exportSchema = false)
 @TypeConverters(Converters::class)
 public abstract class AppDatabase : RoomDatabase() {
 

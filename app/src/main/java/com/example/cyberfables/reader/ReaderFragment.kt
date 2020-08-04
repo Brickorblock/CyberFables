@@ -50,7 +50,7 @@ class ReaderFragment : Fragment() {
         val firstSound = fable.sounds[fable.pages[fable.pageToOpenOn]]
         //firstSound?.let{SoundMaker.playSound(firstSound)}
         //play background music if it is not null
-        fable.bgMusic?.let{ SoundMaker.playBgMusic(fable.bgMusic!!, 0.1F)}
+        fable.bgMusic?.let{ SoundMaker.playBgMusic(fable.bgMusic!!.first, fable.bgMusic!!.second)}
         // Inflate the layout for this fragment
         return root
     }

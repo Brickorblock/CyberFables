@@ -6,6 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
+    <Button
+        android:id="@+id/bookshelfButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/rounded_button"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="Back to Bookshelf"
+        android:textAppearance="@style/bodyStrong"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintVertical_bias="0.243" />
 
     <ImageView
         android:id="@+id/swipe_icon"
