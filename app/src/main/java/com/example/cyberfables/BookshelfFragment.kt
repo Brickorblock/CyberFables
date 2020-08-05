@@ -26,6 +26,11 @@ class BookshelfFragment: Fragment() {
     var selectedPosition = 0
     private var prevPosition = 0
 
+    override fun onResume() {
+        SoundMaker.StopBgMusic()
+        super.onResume()
+    }
+
     // swithces to fable; uses position and prevPosition to determine switching animations
     fun onChosen(fable: Fable) {
 
@@ -70,6 +75,7 @@ class BookshelfFragment: Fragment() {
             adapter = BookAdapter(dataset as ArrayList<Fable>)
 
         }
+
 
         // Inflate the layout for this fragment
         return root

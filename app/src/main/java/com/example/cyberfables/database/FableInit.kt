@@ -36,7 +36,6 @@ class FableInit {
             mutableListOf(R.drawable.passwords_5),
             mutableListOf(R.id.action_readerFragment_to_tortoiseInteractiveFragment),
             hashMapOf<Int, Int>(
-                R.drawable.tortoise_1 to  R.raw.tortoise_snore,
                 R.drawable.tortoise_2 to R.raw.tortoise_idea,
                 R.drawable.tortoise_3 to R.raw.tortoise_ding_and_noise,
                 R.drawable.tortoise_4 to R.raw.tortoise_disappointed_noise1,
@@ -89,13 +88,11 @@ class FableInit {
                 R.id.action_readerFragment_to_littleredInteractive1Fragment,
                 R.id.action_readerFragment_to_littleredInteractive2Fragment),
             hashMapOf<Int, Int>(
-                R.drawable.littlered_1 to  R.raw.lilred_morning_birds,
                 R.drawable.littlered_2 to R.raw.lilred_right_answer_sound_effect,
                 R.drawable.littlered_3 to R.raw.lilred_hmm1,
                 R.drawable.littlered_4 to R.raw.lilred_notification,
                 R.drawable.littlered_5 to R.raw.lilred_notification,
                 R.drawable.littlered_6 to R.raw.lilred_gasp,
-                R.drawable.littlered_7 to R.raw.lilred_owl_hoot,
                 R.drawable.littlered_8_goodend to R.raw.lilred_gasp,
                 R.drawable.littlered_8_badend to R.raw.lilred_gasp,
                 R.drawable.littlered_9 to R.raw.lilred_error,
@@ -145,7 +142,6 @@ class FableInit {
             //empty lists = no interactive content
             mutableListOf(), mutableListOf(),
             hashMapOf<Int, Int>(
-                R.drawable.hansel_1 to  R.raw.hansel_humming,
                 R.drawable.hansel_2 to R.raw.hansel_magic_ringing,
                 R.drawable.hansel_5 to R.raw.hansel_footsteps,
                 R.drawable.hansel_6 to R.raw.hansel_hmm1,
@@ -164,7 +160,7 @@ class FableInit {
             bgMusic = Pair (R.raw.fable_3_music, 0.1F),
             lastStoryPage = R.drawable.hansel_23
         )
-        var fables : ArrayList<Fable> = ArrayList()
+        val fables : ArrayList<Fable> = ArrayList()
         fables.add(fable1)
         fables.add(fable2)
         fables.add(fable3)

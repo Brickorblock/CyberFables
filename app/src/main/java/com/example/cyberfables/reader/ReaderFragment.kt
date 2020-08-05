@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cyberfables.BookDetailFragment
 import com.example.cyberfables.R
+import com.example.cyberfables.SoundMaker
 import com.example.cyberfables.entities.Fable
 import kotlinx.android.synthetic.main.fragment_reader.view.*
 
@@ -45,20 +46,11 @@ class ReaderFragment : Fragment() {
         viewPager.setCurrentItem(fable.pageToOpenOn, false)
 
 
-        //play the background music and the music for the first visible page
-        val firstPage = fable.sounds[viewPager.currentItem]
-        soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
-            if (sampleId == soundMap[firstPage]){
-                val test = soundPool!!.play(soundMap[firstPage]!!, 1F, 1F, 1, 0, 1F)
-                Log.d("sound", "$test for first sound ")
-            }
-            //play background music if theres any of it
-            fable.bgMusic?.let{
-                if (soundMap[fable.bgMusic!!.first] == sampleId){
-                    soundPool!!.play(soundMap[fable.bgMusic!!.first]!!, 0.01F, 0.01F, 2, -1, 1F)
-                }
-            }
+        //play the background music
+        fable.bgMusic?.let {
+            SoundMaker.playBgMusic(fable.bgMusic!!.first, fable.bgMusic!!.second)
         }
+
         // Inflate the layout for this fragment
         return root
     }
@@ -69,11 +61,9 @@ class ReaderFragment : Fragment() {
             .setUsage(AudioAttributes.USAGE_GAME)
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .build()
-        var maxStream = 1
         //if theres background music increase the max streams to 2
-        fable.bgMusic?.let { maxStream = 2}
         soundPool = SoundPool.Builder()
-            .setMaxStreams(maxStream)
+            .setMaxStreams(1)
             .setAudioAttributes(audioAttributes)
             .build()
         val soundMap = HashMap<Int,Int>()
@@ -81,8 +71,6 @@ class ReaderFragment : Fragment() {
         for ((key, value) in fable.sounds) {
             soundMap[key] = soundPool!!.load(context,value,1)
         }
-        //load the background music for the fable
-        fable.bgMusic?.let {soundMap[fable.bgMusic!!.first] = soundPool!!.load(context, fable.bgMusic!!.first, 1)}
         return soundMap
     }
 
