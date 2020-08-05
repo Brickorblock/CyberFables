@@ -20,7 +20,6 @@ class ReaderAdapter(
 
 ) : RecyclerView.Adapter<ReaderAdapter.ReaderViewHolder>() {
     private lateinit var mRecyclerView: RecyclerView
-    private var mute: Boolean = false
 
     inner class ReaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -39,8 +38,11 @@ class ReaderAdapter(
         val curr = fable.pages[position]
         // prev paged used to check interactive
         var prev = curr
+        var prevPrev = curr
         if (position > 0) {
             prev = fable.pages[position - 1]
+        } else if (position > 1) {
+            prevPrev = fable.pages[position - 2]
         }
 
         Log.d("ReaderAdapter", "itemCount = $itemCount, currPos = $position, currImg = $curr")
@@ -53,24 +55,39 @@ class ReaderAdapter(
                 .into(holder.itemView.pageImage)
         }
 
-        //play sounds for all items except first and last
-        if(!mute and fable.sounds.containsKey(prev)){
-            soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F);
+        //play sounds for pages
+        if(soundMap.containsKey(prev)){
+            soundPool?.play(soundMap.get(prev)!!, 1F, 1F, 1, 0, 1F)
+            //remove sound after being played
+            soundMap.remove(prev)
         }
 
-        //mute the sounds when u get to the last page
-        if(curr == fable.pages.last()){
-            mute = true
-        }
 
-        // if user stays on the 1st page for too long, animate a page swipe icon hint
-        if (position != 0) {
-            holder.itemView.swipe_icon.alpha = 0F
-        } else {
-            // play animations
-            val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_left);
-            anim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
+        val lastPage = fable.lastStoryPage
+        Log.d("ReaderAdapter", "curr = $curr, prev = $prev, lastStoryPage = $lastPage")
+
+        // animate swipe icon hints for first and last pages
+        val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_left)
+        anim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
+        if (position == 0) {
+            // play animations for first page
+            holder.itemView.learnText.alpha = 1F
+            holder.itemView.swipe_icon.alpha = 1F
             holder.itemView.swipe_icon.animation = anim
+            holder.itemView.learnText.alpha = 0F
+        } else if (prevPrev == lastPage) {
+            // play animations for last page
+            Log.d("ReaderAdapter", "in Last Page")
+            holder.itemView.learnText.alpha = 1F
+            holder.itemView.swipe_icon.alpha = 1F
+            holder.itemView.swipe_icon.animation = anim
+            holder.itemView.learnText.animation = anim
+            //mute the sounds when u get to the last page
+            //prevents sounds playing out of order as you swipe backwards
+        } else {
+            // hide elements when not needed
+            holder.itemView.swipe_icon.alpha = 0F
+            holder.itemView.learnText.alpha = 0F
         }
 
         //launch interactive fragment when reached - skip this if there are no interactives in fable
@@ -85,6 +102,26 @@ class ReaderAdapter(
             }
         } else {
             Log.d("ReaderAdapter", "No interactive pages - Skipping checkInteractive()...")
+        }
+
+        //if on the last page
+        if (position == itemCount-1) {
+            Log.d("ReaderAdapter", "On very last page")
+            holder.itemView.bookshelfButton.visibility = View.VISIBLE
+
+            // play animations
+            val buttonAnim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fade_in_slow)
+            buttonAnim.startTime = AnimationUtils.currentAnimationTimeMillis() + 2000
+            holder.itemView.bookshelfButton.animation = buttonAnim
+
+            // handle switching fragments on button press
+            holder.itemView.bookshelfButton.setOnClickListener {
+                //go back to the bookshelf
+                (holder.itemView.context as MainActivity).navController.popBackStack()
+            }
+
+        }else {
+            holder.itemView.bookshelfButton.visibility = View.GONE
         }
 
     }

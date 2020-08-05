@@ -46,7 +46,7 @@ class ReaderFragment : Fragment() {
 
 
         //play the background music and the music for the first visible page
-        val firstPage = viewPager.currentItem
+        val firstPage = fable.sounds[viewPager.currentItem]
         soundPool?.setOnLoadCompleteListener { soundPool, sampleId, status ->
             if (sampleId == soundMap[firstPage]){
                 val test = soundPool!!.play(soundMap[firstPage]!!, 1F, 1F, 1, 0, 1F)
