@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.cyberfables"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -44,7 +44,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
     implementation ("com.github.bumptech.glide:glide:4.11.0")
-    compile ("com.github.bumptech.glide:recyclerview-integration:4.11.0") {
+    implementation("com.github.bumptech.glide:recyclerview-integration:4.11.0") {
         // Excludes the support library because it's already included by Glide.
         transitive = false
     }

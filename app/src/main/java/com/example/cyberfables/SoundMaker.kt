@@ -2,28 +2,40 @@ package com.example.cyberfables
 
 import android.content.Context
 import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.media.SoundPool
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 
 object SoundMaker {
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     var soundPool: SoundPool = initSoundPool()
     private var soundMap: HashMap<Int, Int> = hashMapOf()
     private var soundContext: Context? = null
-    private var bgMusic: Int = 0
+    private var bgMusic: MediaPlayer? = initMediaPlayer()
     private var streamMap: HashMap<Int, Int> = hashMapOf()
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun initSoundPool(): SoundPool {
         val audioAttributes = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_GAME)
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .build()
         return SoundPool.Builder()
-            .setMaxStreams(2)
+            .setMaxStreams(1)
             .setAudioAttributes(audioAttributes)
             .build()
+    }
+
+    fun initMediaPlayer(): MediaPlayer? {
+        val mediaPlayer: MediaPlayer? = MediaPlayer().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .build()
+            )
+        }
+        return mediaPlayer
     }
 
 
@@ -43,10 +55,9 @@ object SoundMaker {
 
     fun StopBgMusic() {
         //if there is bgmusic playing, stop it
-        if (bgMusic != 0){
-            soundPool.stop(streamMap[bgMusic]!!)
-            soundMap.remove(bgMusic)
-            bgMusic = 0
+        if (bgMusic!!.isPlaying){
+            bgMusic!!.stop()
+            bgMusic!!.reset()
         }
     }
 
@@ -54,12 +65,20 @@ object SoundMaker {
         soundPool.release()
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun playBgMusic(soundRes: Int, vol: Float = 0.07F){
-        //if the bg music isnt being played
-        if (bgMusic != soundRes){
-            //save it and play it
-            bgMusic = soundRes
-            playSound(bgMusic, -1, vol, 2)
+        val uri = "android.resource://com.example.cyberfables/"
+        if (!bgMusic!!.isPlaying) {
+            bgMusic!!.apply {
+                setDataSource(soundContext!!, Uri.parse(uri + soundRes))
+                isLooping = true
+                setVolume(vol, vol)
+                prepareAsync() // might take long! (for buffering, etc)
+            }
+
+            bgMusic!!.setOnPreparedListener {
+                it.start()
+            }
         }
     }
 
