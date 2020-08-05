@@ -20,7 +20,8 @@ import kotlinx.android.parcel.Parcelize
     var interactivePages: MutableList<Int>?,
     var interactiveFragmentsNav: MutableList<Int>?,
     var sounds: HashMap<Int, Int>,
-    var bgMusic: Int? = null,
+    var bgMusic: Pair<Int, Float>? = null,
+    var lastStoryPage: Int = pages.last(),
     var pageToOpenOn: Int = 0
 
     ) : Parcelable

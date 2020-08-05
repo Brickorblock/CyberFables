@@ -9,8 +9,10 @@ import androidx.annotation.RequiresApi
 object SoundMaker {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     var soundPool: SoundPool = initSoundPool()
-    var soundMap: HashMap<Int, Int> = hashMapOf()
+    private var soundMap: HashMap<Int, Int> = hashMapOf()
     private var soundContext: Context? = null
+    private var bgMusic: Int = 0
+    private var streamMap: HashMap<Int, Int> = hashMapOf()
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun initSoundPool(): SoundPool {
@@ -19,7 +21,7 @@ object SoundMaker {
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .build()
         return SoundPool.Builder()
-            .setMaxStreams(1)
+            .setMaxStreams(2)
             .setAudioAttributes(audioAttributes)
             .build()
     }

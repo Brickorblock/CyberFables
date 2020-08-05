@@ -44,4 +44,18 @@ class Converters {
         return map
     }
 
+    @TypeConverter
+    fun fromStringToPair(pairString: String): Pair<Int,Float>{
+        val array = pairString.split("|").map { it }
+        val pair = Pair(array[0].toInt(), array[1].toFloat())
+        return pair
+    }
+
+    @TypeConverter
+    fun fromPairtoString(pairIntFloat: Pair<Int, Float>): String {
+        return "${pairIntFloat.first}|${pairIntFloat.second}"
+    }
+
+
+
 }

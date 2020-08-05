@@ -70,6 +70,5 @@ might feel more fluid to just set the image resource
                 (context as MainActivity).navController.navigate(R.id.action_bookshelfFragment_to_readerFragment, fableBundle)
             }
         }
-
     }
 }

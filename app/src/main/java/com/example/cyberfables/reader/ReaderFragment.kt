@@ -54,8 +54,8 @@ class ReaderFragment : Fragment() {
             }
             //play background music if theres any of it
             fable.bgMusic?.let{
-                if (soundMap[fable.bgMusic!!] == sampleId){
-                    soundPool!!.play(soundMap[fable.bgMusic!!]!!, 0.01F, 0.01F, 2, -1, 1F)
+                if (soundMap[fable.bgMusic!!.first] == sampleId){
+                    soundPool!!.play(soundMap[fable.bgMusic!!.first]!!, 0.01F, 0.01F, 2, -1, 1F)
                 }
             }
         }
@@ -82,7 +82,7 @@ class ReaderFragment : Fragment() {
             soundMap[key] = soundPool!!.load(context,value,1)
         }
         //load the background music for the fable
-        fable.bgMusic?.let {soundMap[fable.bgMusic!!] = soundPool!!.load(context, fable.bgMusic!!, 1)}
+        fable.bgMusic?.let {soundMap[fable.bgMusic!!.first] = soundPool!!.load(context, fable.bgMusic!!.first, 1)}
         return soundMap
     }
 
