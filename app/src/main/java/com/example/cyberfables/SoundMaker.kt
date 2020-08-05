@@ -71,9 +71,7 @@ object SoundMaker {
         //if soundmap has the sound, play it
         if (soundMap.containsKey(soundRes)) {
             playSoundNoLoad(soundMap[soundRes]!!, loop, volume, priority)
-        }
-        //if it doesnt
-        else {
+        } else {
             //load it and save the sound in the hashmap
             soundMap[soundRes] = soundPool!!.load(soundContext,soundRes,1)
             //wait for it to finish loading, then play it

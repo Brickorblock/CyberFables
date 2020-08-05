@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        SoundMaker.Pause()
         super.onDestroy()
     }
 

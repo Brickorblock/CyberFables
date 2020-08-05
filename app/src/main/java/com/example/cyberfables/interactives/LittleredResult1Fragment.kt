@@ -28,6 +28,10 @@ class LittleredResult1Fragment() : Fragment() {
         correctChoice =
             requireArguments().getBoolean(LittleredInteractive1Fragment.KEY)
 
+        var sound = R.raw.lilred_incorrect_sound_effect
+        if(correctChoice) sound = R.raw.lilred_right_answer_sound_effect
+        SoundMaker.playSound(sound)
+
 
     }
 
@@ -42,9 +46,6 @@ class LittleredResult1Fragment() : Fragment() {
 
         var image = R.drawable.littlered_3_decision1_incorrect
         if (correctChoice) image = R.drawable.littlered_3_decision1_correct
-        var sound = R.raw.lilred_incorrect_sound_effect
-        if(correctChoice) sound = R.raw.lilred_right_answer_sound_effect
-        SoundMaker.playSound(sound)
 
 
         Glide.with(pageImage.context)
