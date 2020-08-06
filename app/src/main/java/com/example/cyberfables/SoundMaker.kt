@@ -46,12 +46,12 @@ object SoundMaker {
     }
 
     fun Pause(){
-        soundPool.autoPause()
+        soundPool.release()
         bgMusic!!.pause()
     }
 
     fun Resume(){
-        soundPool.autoResume()
+        soundPool = initSoundPool()
         bgMusic!!.start()
     }
 
