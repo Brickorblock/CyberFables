@@ -13,7 +13,6 @@ object SoundMaker {
     private var soundMap: HashMap<Int, Int> = hashMapOf()
     private var soundContext: Context? = null
     private var bgMusic: MediaPlayer? = initMediaPlayer()
-    private var streamMap: HashMap<Int, Int> = hashMapOf()
 
     fun initSoundPool(): SoundPool {
         val audioAttributes = AudioAttributes.Builder()
@@ -52,6 +51,7 @@ object SoundMaker {
 
     fun Resume(){
         soundPool = initSoundPool()
+        soundMap.clear()
         bgMusic!!.start()
     }
 
@@ -64,6 +64,7 @@ object SoundMaker {
 
     fun Release(){
         soundPool.release()
+        soundMap.clear()
         bgMusic?.release()
     }
 
@@ -103,9 +104,8 @@ object SoundMaker {
 
     private fun playSoundNoLoad( soundRes: Int, loop: Int, volume: Float, priority: Int) {
         val soundID = soundMap[soundRes]!!
-        val streamID = soundPool.play(soundID, volume, volume, priority, loop, 1F)
+        soundPool.play(soundID, volume, volume, priority, loop, 1F)
         //store the stream ID for playback control
-        streamMap.put(soundRes, streamID)
     }
 
 }
