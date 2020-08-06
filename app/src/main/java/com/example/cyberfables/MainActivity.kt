@@ -41,9 +41,9 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
     }
 
-    override fun onStop() {
+    override fun onPause() {
         SoundMaker.Pause()
-        super.onStop()
+        super.onPause()
     }
 
 

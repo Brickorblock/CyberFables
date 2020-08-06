@@ -23,6 +23,7 @@ class ReaderFragment : Fragment() {
     private val TAG = "ReaderFragment"
 
     private var soundPool: SoundPool? = null
+    private lateinit var fable: Fable
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
@@ -32,7 +33,7 @@ class ReaderFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_reader, container, false)
 
         //grab fable from bundle args (from BookDetailFragment)
-        val fable = (requireArguments().get(BookDetailFragment.KEY) as Fable)
+        fable = (requireArguments().get(BookDetailFragment.KEY) as Fable)
 
         //get soundMap
         val soundMap = getSoundPool(fable)
@@ -46,13 +47,17 @@ class ReaderFragment : Fragment() {
         viewPager.setCurrentItem(fable.pageToOpenOn, false)
 
 
+
+        // Inflate the layout for this fragment
+        return root
+    }
+
+    override fun onResume() {
+        super.onResume()
         //play the background music
         fable.bgMusic?.let {
             SoundMaker.playBgMusic(fable.bgMusic!!.first, fable.bgMusic!!.second)
         }
-
-        // Inflate the layout for this fragment
-        return root
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

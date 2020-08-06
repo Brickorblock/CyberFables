@@ -47,22 +47,24 @@ object SoundMaker {
 
     fun Pause(){
         soundPool.autoPause()
+        bgMusic!!.pause()
     }
 
     fun Resume(){
         soundPool.autoResume()
+        bgMusic!!.start()
     }
 
     fun StopBgMusic() {
         //if there is bgmusic playing, stop it
         if (bgMusic!!.isPlaying){
-            bgMusic!!.stop()
             bgMusic!!.reset()
         }
     }
 
     fun Release(){
         soundPool.release()
+        bgMusic?.release()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
