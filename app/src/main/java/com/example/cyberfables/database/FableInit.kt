@@ -47,7 +47,7 @@ class FableInit {
                 R.drawable.tortoise_12 to R.raw.tortoise_yay,
                 R.drawable.tortoise_13 to R.raw.tortoise_end_song
             ),
-            bgMusic =  Pair(R.raw.fable_1_music,0.1F),
+            bgMusic =  Pair(R.raw.fable_1_music,0.4F),
             lastStoryPage = R.drawable.tortoise_13
         )
 
@@ -99,7 +99,7 @@ class FableInit {
                 R.drawable.littlered_10_badend to  R.raw.hansel_whimper,
                 R.drawable.littlered_12_converged to R.raw.lilred_hmm1
             ),
-            bgMusic = Pair(R.raw.fable_2_music,0.1F),
+            bgMusic = Pair(R.raw.fable_2_music,0.5F),
             lastStoryPage = R.drawable.littlered_12_converged
         )
 
@@ -157,7 +157,7 @@ class FableInit {
                 R.drawable.hansel_20 to R.raw.hansel_gasp,
                 R.drawable.hansel_23 to R.raw.hansel_end_jingle
             ),
-            bgMusic = Pair (R.raw.fable_3_music, 0.1F),
+            bgMusic = Pair (R.raw.fable_3_music, 0.6F),
             lastStoryPage = R.drawable.hansel_23
         )
         val fables : ArrayList<Fable> = ArrayList()
